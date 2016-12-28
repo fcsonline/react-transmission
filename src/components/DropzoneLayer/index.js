@@ -36,8 +36,6 @@ class DropzoneLayer extends Component {
         disableClick={true}
         accept='application/x-bittorrent'
         onDrop={this.onDrop}
-        onDragEnter={this.onDragEnter}
-        onDragLeave={this.onDragLeave}
       >
         <div styleName='dropzoneContainer'>
           <div styleName='dropzoneContent'>
