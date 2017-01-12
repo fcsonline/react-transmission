@@ -8,39 +8,45 @@ class ViewStore {
   @observable compact = false;
   @observable notificationsEnabled = false;
 
-  @observable isSettingsContextMenuShown = false;
-  @observable isTorrentContextMenuShown = false;
-  @observable isSortByContextMenuShown = false;
-  @observable isDownloadRateContextMenuShown = false;
-  @observable isUploadRateContextMenuShown = false;
+  @observable menus = {
+    settings: false,
+    torrent: false,
+    sortBy: false,
+    downloadRate: false,
+    uploadRate: false,
+  };
 
-  @observable isRenamePromptShown = false;
-  @observable isLocationPromptShown = false;
+  @observable prompts = {
+    rename: false,
+    location: false,
+  };
 
-  // TODO: find a better way to manage them
-  @observable isOpenDialogShown = false;
-  @observable isPreferencesDialogShown = false;
-  @observable isConnectionDialogShown = false;
-  @observable isStatisticsDialogShown = false;
-  @observable isAboutDialogShown = false;
+  @observable dialogs = {
+    open: false,
+    preferences: false,
+    connection: false,
+    statistics: false,
+    about: false,
+  };
+
   @observable isInspectorShown = false;
 
   @action toggleContextMenus() {
-    this.isSettingsContextMenuShown = false;
-    this.isTorrentContextMenuShown = false;
-    this.isSortByContextMenuShown = false;
-    this.isDownloadRateContextMenuShown = false;
-    this.isUploadRateContextMenuShown = false;
+    Object.keys(this.menus).forEach((key) => this.menus[key] = false);
   }
 
   @action toggleSettingsContextMenu() {
     this.toggleContextMenus();
-    this.isSettingsContextMenuShown = !this.isSettingsContextMenuShown;
+    this.dialogs.settings = !this.dialogs.settings;
   }
 
   @action toggleTorrentContextMenu() {
     this.toggleContextMenus();
-    this.isTorrentContextMenuShown = !this.isTorrentContextMenuShown;
+    this.dialogs.torrent = !this.dialogs.torrent;
+  }
+
+  @action toggleContextMenu(menu) {
+    this.menus[menu] = !this.menus[menu];
   }
 
   @action toggleSortByContextMenu() {
@@ -55,32 +61,16 @@ class ViewStore {
     this.isUploadRateContextMenuShown = !this.isUploadRateContextMenuShown;
   }
 
-  @action toggleRenamePrompt() {
-    this.isRenamePromptShown = !this.isRenamePromptShown;
-  }
-
-  @action toggleLocationPrompt() {
-    this.isLocationPromptShown = !this.isLocationPromptShown;
-  }
-
-  @action toggleOpenDialog() {
-    this.isOpenDialogShown = !this.isOpenDialogShown;
-  }
-
-  @action togglePreferencesDialog() {
-    this.isPreferencesDialogShown = !this.isPreferencesDialogShown;
+  @action togglePrompt(id) {
+    this.prompts[id] = !this.prompts[id];
   }
 
   @action toggleConnectionDialog(value) {
-    this.isConnectionDialogShown = value;
+    this.dialogs.connection = value;
   }
 
-  @action toggleStatisticsDialog() {
-    this.isStatisticsDialogShown = !this.isStatisticsDialogShown;
-  }
-
-  @action toggleAboutDialog() {
-    this.isAboutDialogShown = !this.isAboutDialogShown;
+  @action toggleDialog(dialog) {
+    this.dialogs[dialog] = !this.dialogs[dialog];
   }
 
   @action toggleInspector() {

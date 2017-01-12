@@ -39,13 +39,13 @@ class PreferencesDialog extends Component {
   }
 
   @autobind onHide() {
-    this.props.view_store.togglePreferencesDialog();
+    this.props.view_store.toggleDialog('preferences');
   }
 
   render() {
     return (
       <Dialog
-        show={this.props.view_store.isPreferencesDialogShown}
+        show={this.props.view_store.dialogs.preferences}
         onHide={this.onHide}
         header='Preferences'
       >

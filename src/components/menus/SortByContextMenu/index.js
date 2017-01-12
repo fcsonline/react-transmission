@@ -11,7 +11,7 @@ import styles from './styles/index.css';
 @CSSModules(styles)
 class SortByContextMenu extends Component {
   @autobind onToggleSortByContextMenu() {
-    this.props.view_store.toggleSortByContextMenu();
+    this.props.view_store.toggleContextMenu('sortBy');
   }
 
   @autobind onToggleContextMenu() {

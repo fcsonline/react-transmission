@@ -35,11 +35,11 @@ class TorrentContextMenu extends Component {
   }
 
   @autobind setLocation() {
-    this.props.view_store.toggleLocationPrompt();
+    this.props.view_store.togglePrompt('location');
   }
 
   @autobind rename() {
-    this.props.view_store.toggleRenamePrompt();
+    this.props.view_store.togglePrompt('rename');
   }
 
   @autobind queueMoveTop() {

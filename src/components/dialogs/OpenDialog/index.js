@@ -27,16 +27,16 @@ class OpenDialog extends Component {
     this.torrentUpload.serialize().then((torrents) => {
       torrents.forEach((torrentData) => this.props.torrents_store.add(torrentData));
     });
-    this.props.view_store.toggleOpenDialog();
+    this.props.view_store.toggleDialog('open');
   }
 
   @autobind onCancel(event) {
     event.preventDefault();
-    this.props.view_store.toggleOpenDialog();
+    this.props.view_store.toggleDialog('open');
   }
 
   @autobind onHide() {
-    this.props.view_store.toggleOpenDialog();
+    this.props.view_store.toggleDialog('open');
   }
 
   @autobind onChangeFiles({ target }) {
@@ -75,7 +75,7 @@ class OpenDialog extends Component {
   render() {
     return (
       <Dialog
-        show={this.props.view_store.isOpenDialogShown}
+        show={this.props.view_store.dialogs.open}
         onHide={this.onHide}
         header='Upload Torrent Files'
       >

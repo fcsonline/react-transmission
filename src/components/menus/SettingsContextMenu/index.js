@@ -15,11 +15,11 @@ import styles from './styles/index.css';
 @CSSModules(styles)
 class TorrentContextMenu extends Component {
   @autobind onAbout() {
-    this.props.view_store.toggleAboutDialog();
+    this.props.view_store.toggleDialog('about');
   }
 
   @autobind onStatistics() {
-    this.props.view_store.toggleStatisticsDialog();
+    this.props.view_store.toggleDialog('statistics');
   }
 
   @autobind onToggleSortByContextMenu() {

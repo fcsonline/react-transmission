@@ -18,7 +18,7 @@ import styles from './styles/index.css';
 @CSSModules(styles)
 class ActionToolbar extends Component {
   @autobind onOpen() {
-    this.props.view_store.toggleOpenDialog();
+    this.props.view_store.toggleDialog('open');
   }
 
   @autobind onRemove() {

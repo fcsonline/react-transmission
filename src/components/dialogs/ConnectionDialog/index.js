@@ -25,7 +25,7 @@ class ConnectionDialog extends Component {
   render() {
     return (
       <Dialog
-        show={this.props.view_store.isConnectionDialogShown}
+        show={this.props.view_store.dialogs.connection}
         onHide={this.onHide}
         header='Connection Failed'
       >

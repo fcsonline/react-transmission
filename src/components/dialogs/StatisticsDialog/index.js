@@ -15,12 +15,12 @@ import styles from './styles/index.css';
 class StatisticsDialog extends Component {
 
   @autobind onHide() {
-    this.props.view_store.toggleStatisticsDialog();
+    this.props.view_store.toggleDialog('statistics');
   }
 
   render() {
 
-    if (!this.props.view_store.isStatisticsDialogShown) {
+    if (!this.props.view_store.dialogs.statistics) {
       return false;
     }
 
@@ -29,7 +29,7 @@ class StatisticsDialog extends Component {
 
     return (
       <Dialog
-        show={this.props.view_store.isStatisticsDialogShown}
+        show={this.props.view_store.dialogs.statistics}
         onHide={this.onHide}
         header='Statistics'
       >

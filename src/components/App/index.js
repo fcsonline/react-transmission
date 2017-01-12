@@ -107,8 +107,8 @@ class App extends Component {
               action='Apply'
               placeholder={firstTorrent.downloadDir}
               question='Location'
-              toggle={this.props.view_store.isLocationPromptShown}
-              onToggle={() => this.props.view_store.toggleLocationPrompt()}
+              toggle={this.props.view_store.prompts.location}
+              onToggle={() => this.props.view_store.togglePrompt('location')}
               onSubmit={(value) => this.props.torrents_store.setLocation([selectedTorrents[0]], value)}
             />
 
@@ -117,8 +117,8 @@ class App extends Component {
               action='Rename'
               question='Enter new name'
               placeholder={firstTorrent.name}
-              toggle={this.props.view_store.isRenamePromptShown}
-              onToggle={() => this.props.view_store.toggleRenamePrompt()}
+              toggle={this.props.view_store.prompts.rename}
+              onToggle={() => this.props.view_store.togglePrompt('rename')}
               onSubmit={(value) => this.props.torrents_store.rename([selectedTorrents[0]], firstTorrent.name, value)}
             />
 

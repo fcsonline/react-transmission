@@ -14,13 +14,13 @@ import styles from './styles/index.css';
 class AboutDialog extends Component {
 
   @autobind onHide() {
-    this.props.view_store.toggleAboutDialog();
+    this.props.view_store.toggleDialog('about');
   }
 
   render() {
     return (
       <Dialog
-        show={this.props.view_store.isAboutDialogShown}
+        show={this.props.view_store.dialogs.about}
         onHide={this.onHide}
         header='About'
       >
