@@ -17,7 +17,7 @@ class TorrentList extends Component {
     super(props);
 
     this.state = {
-      showContextMenu: false,
+      showContextMenu: false, // FIXME
       position: {
         left: 0,
         top: 0,
@@ -26,8 +26,8 @@ class TorrentList extends Component {
   }
 
   @autobind toggleContextMenu(position) {
-    if (!this.props.view_store.isTorrentContextMenuShown) {
-      this.props.view_store.toggleTorrentContextMenu();
+    if (!this.props.view_store.menus.torrent) {
+      this.props.view_store.toggleContextMenu('torrent');
     }
 
     this.setState({position});
@@ -98,11 +98,11 @@ class TorrentList extends Component {
     return (
       <div ref='target' style={{position: 'absolute', visibility: 'hidden', ...position, left: position.left + 50}}>
         <TorrentContextMenu
-          show={this.props.view_store.isTorrentContextMenuShown}
+          show={this.props.view_store.menus.torrent}
           container={this}
           placement='top'
           target={() => findDOMNode(this.refs.target)}
-          onHide={() => this.props.view_store.toggleTorrentContextMenu()}
+          onHide={() => this.props.view_store.toggleContextMenu('torrent')}
         />
       </div>
     );
