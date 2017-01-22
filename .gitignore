@@ -6,6 +6,11 @@ node_modules
 # testing
 coverage
 
+errorShots
+logs
+screenshots/diff
+screenshots/taken
+
 # production
 build
 
