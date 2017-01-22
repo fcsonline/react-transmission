@@ -51,7 +51,7 @@ class FilterToolbar extends Component {
     });
 
     return (
-      <div styleName='toolbar'>
+      <div id='statusbar' styleName='toolbar'>
         <span>Show</span>
 
         <div styleName='filters'>

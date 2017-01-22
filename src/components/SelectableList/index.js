@@ -59,12 +59,12 @@ class SelectableList extends Component {
     const {selectedItemIds} = this.props;
 
     return (
-      <ul styleName='list' onKeyDown={this.onKeyDown}>
+      <ul id='torrent_container' styleName='list' onKeyDown={this.onKeyDown}>
         {this.props.children.map((child, index) => {
           const childId = child.props.id;
           const isSelected = selectedItemIds.includes(childId);
           const isEven = index % 2 === 1; // Zero indexed.
-          const className = `${styles.row} ${isSelected ? styles.selected : ''} ${isEven ? styles.even : ''}`;
+          const className = `torrent ${styles.row} ${isSelected ? styles.selected : ''} ${isEven ? styles.even : ''}`;
 
           return (
             <li

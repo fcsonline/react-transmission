@@ -58,7 +58,7 @@ class ActionToolbar extends Component {
     const isAnyPaused = selectedTorrents.some((torrent) => torrent.isStopped);
 
     return (
-      <div styleName='toolbar'>
+      <div id='toolbar' styleName='toolbar'>
         <button styleName='button' onClick={this.onOpen}>
           <img src={toolbarFolderImage} title='Open Torrent' alt='Open Torrent'/>
         </button>
@@ -79,7 +79,7 @@ class ActionToolbar extends Component {
         <button styleName='button' onClick={this.onPauseAll}>
           <img src={toolbarPauseAllImage} title='Pause All Torrents' alt='Pause All Torrents'/>
         </button>
-        <button className={`${styles.button} ${styles.inspector}`} onClick={this.onToggleInspector}>
+        <button id='toolbar-inspector' className={`${styles.button} ${styles.inspector}`} onClick={this.onToggleInspector}>
           <img src={toolbarInfoImage} title='Toggle inspector' alt='Toggle inspector'/>
         </button>
       </div>

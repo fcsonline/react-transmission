@@ -103,7 +103,7 @@ class App extends Component {
                 </SelectableList>
               </div>
               { isInspectorShown &&
-                <div styleName='details'>
+                <div id='torrent_inspector' styleName='details'>
                   <Inspector />
                 </div>
               }
