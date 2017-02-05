@@ -17,6 +17,7 @@ class ViewStore {
 
   @observable isRenamePromptShown = false;
   @observable isLocationPromptShown = false;
+  @observable isConfirmRemoveShown = false;
 
   // TODO: find a better way to manage them
   @observable isOpenDialogShown = false;
@@ -62,6 +63,10 @@ class ViewStore {
 
   @action toggleLocationPrompt() {
     this.isLocationPromptShown = !this.isLocationPromptShown;
+  }
+
+  @action toggleConfirmRemove() {
+    this.isConfirmRemoveShown = !this.isConfirmRemoveShown;
   }
 
   @action toggleOpenDialog() {

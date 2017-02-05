@@ -17,6 +17,7 @@ import ConnectionDialog from 'components/dialogs/ConnectionDialog';
 import StatisticsDialog from 'components/dialogs/StatisticsDialog';
 import AboutDialog from 'components/dialogs/AboutDialog';
 import PromptDialog from 'components/dialogs/PromptDialog';
+import ConfirmDialog from 'components/dialogs/ConfirmDialog';
 
 import styles from './styles/index.css';
 

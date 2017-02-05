@@ -22,11 +22,7 @@ class ActionToolbar extends Component {
   }
 
   @autobind onRemove() {
-    const confirmRemove = confirm(`Once removed, continuing the transfer will require the torrent file. Are you sure you want to remove it?`);
-
-    if (!confirmRemove) return;
-
-    this.props.torrents_store.remove(this.props.view_store.selectedTorrents);
+    this.props.view_store.toggleConfirmRemove();
   }
 
   @autobind onPause() {
@@ -47,6 +43,25 @@ class ActionToolbar extends Component {
 
   @autobind onToggleInspector() {
     this.props.view_store.toggleInspector();
+  }
+
+  renderConfirmRemove() {
+    const { view_store, torrents_store } = this.props;
+    const selectedTorrents = view_store.selectedTorrents;
+    const multiple = selectedTorrents.length > 1;
+    const header = multiple ? `Remove ${selectedTorrents.length} transfers?` : `Remove ${selectedTorrents[0].name}?`;
+    const question = multiple ? 'Once removed, continuing the transfers will require the torrent files. Are you sure you want to remove them?' : 'Once removed, continuing the transfer will require the torrent file. Are you sure you want to remove it?';
+
+    return (
+      <ConfirmDialog
+        header={header}
+        action='Remove'
+        question={question}
+        toggle={view_store.isConfirmRemoveShown}
+        onToggle={() => view_store.toggleConfirmRemove()}
+        onSubmit={() => torrents_store.remove(selectedTorrents)}
+      />
+    );
   }
 
   render() {
@@ -82,6 +97,8 @@ class ActionToolbar extends Component {
         <button className={`${styles.button} ${styles.inspector}`} onClick={this.onToggleInspector}>
           <img src={toolbarInfoImage} title='Toggle inspector' alt='Toggle inspector'/>
         </button>
+
+        {this.renderConfirmRemove()}
       </div>
     );
   }
