@@ -15,9 +15,10 @@ class SpeedTabPanel extends Component {
       const hours = Math.round(item / 60);
       const minutes = item % 60;
 
-      memo[item] = `${hours}:${minutes}`;
+      memo[item] = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
       return memo;
     }, {});
+
     const days = {
       '127': 'Everyday',
       '62': 'Weekdays',
