@@ -13,7 +13,7 @@ const {
   STATUS_SEED
 } = Torrent;
 
-const mapStatus = arr => lodash.map(arr, 'status')
+const mapStatus = arr => arr.map(({ status }) => status)
 
 describe('TorrentStore', () => {
   describe('filteredTorrents', () => {
