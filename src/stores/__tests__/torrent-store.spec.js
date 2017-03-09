@@ -1,5 +1,4 @@
 import React from 'react';
-import lodash from 'lodash';
 import TorrentStore from '../torrent-store'
 import Torrent from '../torrent'
 
