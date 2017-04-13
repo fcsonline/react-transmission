@@ -71,6 +71,7 @@
     "react-css-modules": "3.7.10",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.8.0",
+    "react-intl": "^2.2.3",
     "react-overlays": "0.6.10",
     "react-tabs": "^0.8.2",
     "superagent": "^3.5.2"
