@@ -5,10 +5,12 @@ import { FilterStates, PrefCookieKeys } from 'stores/prefs-store';
 
 export default function ({ prefs_store }) {
   const keys = ['statusFilter', 'sortCriteria', 'sortDirection', 'compact']
-  keys.forEach(k => {
-    reaction(
-      _ => prefs_store[k],
-      value => {
+  reaction(
+    () => keys.map(k => [k, prefs_store[k]]),
+    pairs => {
+      pairs.forEach(obj => {
+        let [k, value] = obj;
+
         if (k === 'statusFilter') {
           // status filter is saved as a string (i.e. 'all')
           // so we need to make sure to save and read it as so.
@@ -16,7 +18,7 @@ export default function ({ prefs_store }) {
         }
 
         persistKey(PrefCookieKeys[k], value);
-      }
-    )
-  })
+      });
+    }
+  )
 }
