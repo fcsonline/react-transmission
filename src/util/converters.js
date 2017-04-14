@@ -8,8 +8,8 @@ export function fileToBase64(file) {
 
       resolve(encodedData);
     };
-    reader.onabort = () => reject();
-    reader.onerror = () => reject();
+    reader.onabort = () => reject(reader.error);
+    reader.onerror = () => reject(reader.error);
 
     reader.readAsDataURL(file);
   });

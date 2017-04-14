@@ -1,4 +1,37 @@
-import 'whatwg-fetch';
+import agent from 'superagent';
+
+function toMap(object) {
+  return new Map(
+    Object.keys(object).reduce((arr, key) => [...arr, [key, object[key]]], [])
+  );
+}
+
+function fetch(url, { headers, body, method }) {
+  return new Promise((resolve, reject) => {
+    agent[method](url)
+      .type('application/json')
+      .accept('application/json')
+      .set(headers)
+      .send(body)
+      .end((err, response) => {
+        // Network or timeout error
+        if (err && !err.status && !err.response) {
+          reject(err);
+        }
+
+        // HTTP error 4xx or 5xx
+        if (err && err.status) {
+          resolve({status: err.status, headers: toMap(response.headers)});
+        }
+
+        if (!err && response) {
+          resolve({json: () => Promise.resolve(response.body)});
+        }
+
+        reject(new Error('Invalid state'));
+      });
+  });
+}
 
 class RPC {
   static SESSION_ID_HEADER = 'X-Transmission-Session-Id';
@@ -12,18 +45,18 @@ class RPC {
 
   sendRequest(method, data) {
     const headers = {
-      [RPC.SESSION_ID_HEADER]: this._sessionId
+      [RPC.SESSION_ID_HEADER]: this._sessionId,
     };
     const body = JSON.stringify({
       'arguments': data,
-      method
+      method,
     });
 
     return fetch(this._url, {
       method: 'POST',
       headers,
       credentials: 'include',
-      body
+      body,
     }).then((response) => {
       if (response.status === 502) {
         this._onDisconnect(response);
@@ -35,7 +68,7 @@ class RPC {
         return fetch(this._url, {
           method: 'POST',
           headers: {...headers, [RPC.SESSION_ID_HEADER]: this._sessionId},
-          body
+          body,
         });
       }
 

@@ -52,7 +52,7 @@ class TorrentUpload {
 
           resolve([...fileTorrents, urlTorrent]);
         })
-        .catch(() => reject());
+        .catch(() => reject(new Error("Can't parse files")));
     });
   }
 }

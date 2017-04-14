@@ -287,8 +287,8 @@ export default class TorrentStats {
           peers: torrent.peers,
         });
 
-      return allPeers
-    }, []);
+        return allPeers;
+      }, []);
   }
 
   @computed get trackers() {
@@ -302,8 +302,8 @@ export default class TorrentStats {
           trackers: torrent.trackerStats.map((trackerData) => new Tracker(trackerData)),
         });
 
-      return allTrackers
-    }, []);
+        return allTrackers;
+      }, []);
   }
 
   @computed get files() {
@@ -317,7 +317,7 @@ export default class TorrentStats {
           files: torrent.filesAndStats,
         });
 
-      return allFiles
-    }, []);
+        return allFiles;
+      }, []);
   }
 }
