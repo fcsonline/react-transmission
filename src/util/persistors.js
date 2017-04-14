@@ -1,4 +1,4 @@
-const genLocalStorageKey = key => `react-transmission.${key}`
+export const genLocalStorageKey = key => `react-transmission.${key}`
 
 export function persistKey (key, val) {
   window.localStorage.setItem(genLocalStorageKey(key), val);
