@@ -1,1 +1,3 @@
-**/*.js
+src/util/common.js
+src/util/formatters.js
+src/util/uri.js
