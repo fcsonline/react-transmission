@@ -130,10 +130,6 @@
     "parser": "babel-eslint",
     "extends": ["react-app", "standard", "standard-react"],
     "rules": {
-      "semi": [
-        "error",
-        "always"
-      ],
       "arrow-parens": [
         "error",
         "always"
@@ -141,6 +137,13 @@
       "comma-dangle": [
         "error",
         "always-multiline"
+      ],
+      "no-var": [
+        "error"
+      ],
+      "semi": [
+        "error",
+        "always"
       ],
       "space-before-function-paren": [
         "error",
