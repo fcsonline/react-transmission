@@ -84,6 +84,7 @@
     "test": "node --harmony_proxies scripts/test.js --env=jsdom"
   },
   "jest": {
+    "coverageDirectory": "<rootDir>/coverage",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
@@ -105,7 +106,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "\\.css$": "identity-obj-proxy"
+      "\\.css$": "identity-obj-proxy",
+      "^test(.*)$": "<rootDir>/test$1"
     },
     "modulePaths": [
       "<rootDir>/src"

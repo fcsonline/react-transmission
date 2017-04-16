@@ -1,0 +1,17 @@
+exports[`test Seeding multiple peers 1`] = `
+<span>
+  Seeding to 5 of 5 connected peers - ↑ 100 kB/s
+</span>
+`;
+
+exports[`test Seeding none 1`] = `
+<span>
+  Seeding to 0 of 0 connected peers - ↑ 0 kB/s
+</span>
+`;
+
+exports[`test Seeding single peers 1`] = `
+<span>
+  Seeding to 1 of 1 connected peer - ↑ 100 kB/s
+</span>
+`;

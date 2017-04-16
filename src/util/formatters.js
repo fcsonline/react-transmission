@@ -21,6 +21,14 @@ const mem_M_str = 'MiB';
 const mem_G_str = 'GiB';
 const mem_T_str = 'TiB';
 
+export function formatUL(bps) {
+  return `↑ ${speedBps(bps)}`;
+};
+
+export function formatDL(bps) {
+    return `↓ ${speedBps(bps)}`;
+};
+
 /**
  * Localize number with browser number formatting
  *
@@ -212,21 +220,6 @@ export function formatStatus(torrent) {
     return 'Unknown';
   default:
     return 'Error';
-  }
-}
-
-export function formatError(torrent) {
-  const errorDescription = torrent.errorDescription;
-
-  switch (torrent.error) {
-  case Torrent.ERR_TRACKER_WARNING:
-    return `Tracker returned a warning: ${errorDescription}`;
-  case Torrent.ERR_TRACKER_ERROR:
-    return `Tracker returned an error: ${errorDescription}`;
-  case Torrent.ERR_LOCAL_ERROR:
-    return `Error: ${errorDescription}`;
-  default:
-    return null;
   }
 }
 

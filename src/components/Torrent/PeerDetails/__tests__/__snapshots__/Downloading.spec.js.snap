@@ -1,0 +1,17 @@
+exports[`test Downloading from peers 1`] = `
+<span>
+  Downloading from 5 of 5 peers - ↓ 10.00 MB/s ↑ 100 kB/s
+</span>
+`;
+
+exports[`test Downloading from peers and webseeds 1`] = `
+<span>
+  Downloading from 5 of 5 peers and 5 web seeds - ↓ 10.00 MB/s ↑ 100 kB/s
+</span>
+`;
+
+exports[`test Downloading from webseeds 1`] = `
+<span>
+  Downloading from 5 web seeds - ↓ 10.00 MB/s ↑ 100 kB/s
+</span>
+`;

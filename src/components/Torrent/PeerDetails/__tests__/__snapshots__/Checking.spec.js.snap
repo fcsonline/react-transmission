@@ -1,0 +1,5 @@
+exports[`test Checking 1`] = `
+<span>
+  Verifying local data (50% tested)
+</span>
+`;

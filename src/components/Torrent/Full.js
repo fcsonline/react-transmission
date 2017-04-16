@@ -5,8 +5,9 @@ import autobind from 'autobind-decorator';
 
 import ProgressBar from './ProgressBar';
 import StatusButton from './StatusButton';
+import PeerDetails from './PeerDetails';
 
-import { getPeerDetails, getProgressDetails } from './services';
+import { getProgressDetails } from './services';
 
 import styles from './styles/index.css';
 
@@ -40,7 +41,7 @@ class Full extends Component {
           {torrent.name}
         </div>
         <div styleName={getPeerDetailsStyles(torrent)}>
-          {getPeerDetails(torrent)}
+          <PeerDetails torrent={torrent} />
         </div>
         <div styleName='progressBarRow'>
           <ProgressBar torrent={torrent} />
