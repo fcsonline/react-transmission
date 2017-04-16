@@ -1,15 +1,7 @@
 import React from 'react';
 import createComponentWithIntl from 'test/util/createComponentWithIntl';
 
-import PeerDetails from '../';
-
-test('PeerDetails has errors', () => {
-  const component = createComponentWithIntl(
-    <PeerDetails torrent={{hasErrors: true}} />
-  );
-
-  expect(component.toJSON()).toMatchSnapshot();
-});
+import StatusDetails from '../';
 
 const torrent = {
   recheckProgress: 1,
@@ -21,33 +13,41 @@ const torrent = {
   rateDownload: 1E7,
 };
 
-test('PeerDetails downloading', () => {
+test('StatusDetails has errors', () => {
   const component = createComponentWithIntl(
-    <PeerDetails torrent={{...torrent, isDownloading: true}} />
+    <StatusDetails torrent={{hasErrors: true}} />
   );
 
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-test('PeerDetails seeding', () => {
+test('StatusDetails downloading', () => {
   const component = createComponentWithIntl(
-    <PeerDetails torrent={{...torrent, isSeeding: true}} />
+    <StatusDetails torrent={{...torrent, isDownloading: true}} />
   );
 
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-test('PeerDetails checking', () => {
+test('StatusDetails seeding', () => {
   const component = createComponentWithIntl(
-    <PeerDetails torrent={{...torrent, isChecking: true}} />
+    <StatusDetails torrent={{...torrent, isSeeding: true}} />
   );
 
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-test('PeerDetails status', () => {
+test('StatusDetails checking', () => {
   const component = createComponentWithIntl(
-    <PeerDetails torrent={{...torrent}} />
+    <StatusDetails torrent={{...torrent, isChecking: true}} />
+  );
+
+  expect(component.toJSON()).toMatchSnapshot();
+});
+
+test('StatusDetails status', () => {
+  const component = createComponentWithIntl(
+    <StatusDetails torrent={{...torrent}} />
   );
 
   expect(component.toJSON()).toMatchSnapshot();

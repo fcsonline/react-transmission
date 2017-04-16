@@ -1,0 +1,23 @@
+exports[`test ProgressDetails done 1`] = `
+<span>
+  100.0 kB, uploaded 100.0 kB (Ratio: 2.00)
+</span>
+`;
+
+exports[`test ProgressDetails magnet 1`] = `
+<span>
+  Magnetized transfer - retrieving metadata (75%)
+</span>
+`;
+
+exports[`test ProgressDetails pending 1`] = `
+<span>
+  90.0 kB of 100.0 kB (90%)
+</span>
+`;
+
+exports[`test ProgressDetails seeding 1`] = `
+<span>
+  100.0 kB, uploaded 100.0 kB (Ratio: 2.00)
+</span>
+`;

@@ -1,0 +1,11 @@
+exports[`test Magnet 1`] = `
+<span>
+  Magnetized transfer - retrieving metadata (75%)
+</span>
+`;
+
+exports[`test Magnet stopped 1`] = `
+<span>
+  Magnetized transfer - needs metadata (75%)
+</span>
+`;

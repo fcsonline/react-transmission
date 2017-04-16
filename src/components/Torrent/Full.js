@@ -5,9 +5,8 @@ import autobind from 'autobind-decorator';
 
 import ProgressBar from './ProgressBar';
 import StatusButton from './StatusButton';
-import PeerDetails from './PeerDetails';
-
-import { getProgressDetails } from './services';
+import StatusDetails from './StatusDetails';
+import ProgressDetails from './ProgressDetails';
 
 import styles from './styles/index.css';
 
@@ -33,7 +32,7 @@ class Full extends Component {
   }
 
   render() {
-    const torrent = this.props.torrent;
+    const { torrent } = this.props;
 
     return (
       <div styleName='torrent'>
@@ -41,14 +40,14 @@ class Full extends Component {
           {torrent.name}
         </div>
         <div styleName={getPeerDetailsStyles(torrent)}>
-          <PeerDetails torrent={torrent} />
+          <StatusDetails torrent={torrent} />
         </div>
         <div styleName='progressBarRow'>
           <ProgressBar torrent={torrent} />
           <StatusButton torrent={torrent} onToggle={this.onToggleTorrent} />
         </div>
         <div styleName='progressDetails'>
-          {getProgressDetails(torrent)}
+          <ProgressDetails torrent={torrent} />
         </div>
       </div>
     );

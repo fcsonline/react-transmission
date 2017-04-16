@@ -6,7 +6,7 @@ import Downloading from './Downloading';
 import Error from './Error';
 import Status from './Status';
 
-function PeerDetails({ torrent }) {
+function StatusDetails({ torrent }) {
   if (torrent.hasErrors) {
     return <Error torrent={torrent} />;
   }
@@ -26,4 +26,4 @@ function PeerDetails({ torrent }) {
   return <Status torrent={torrent} />;
 }
 
-export default PeerDetails;
+export default StatusDetails;
