@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TorrentStore from 'stores/torrent-store'
-import PrefsStore from 'stores/prefs-store'
+import PrefsStore, { FilterStates } from 'stores/prefs-store'
 import Torrent from 'stores/torrent'
 import getFilteredTorrents from 'stores/util/getFilteredTorrents'
 
@@ -47,25 +47,23 @@ describe('getFilteredTorrents', () => {
   })
   describe('when showing downloading', () => {
     it('should only show downloading torrents', () => {
-      prefs.statusFilter = STATUS_DOWNLOAD;
+      prefs.statusFilter = FilterStates.Downloading;
       const filteredTorrents = getFilteredTorrents(store, prefs);
 
-      expect(mapStatus(filteredTorrents)).toContain(STATUS_DOWNLOAD);
-      expect(filteredTorrents.length).toBe(1);
+      expect(filteredTorrents.length).toBe(2);
     })
   })
   describe('when showing seeding', () => {
     it('should only show seeding torrents', () => {
-      prefs.statusFilter = STATUS_SEED;
+      prefs.statusFilter = FilterStates.Seeding;
       const filteredTorrents = getFilteredTorrents(store, prefs);
 
-      expect(mapStatus(filteredTorrents)).toContain(STATUS_SEED);
-      expect(filteredTorrents.length).toBe(1);
+      expect(filteredTorrents.length).toBe(2);
     })
   })
   describe('when showing paused', () => {
     it('should only show paused torrents', () => {
-      prefs.statusFilter = STATUS_STOPPED;
+      prefs.statusFilter = FilterStates.Paused;
       const filteredTorrents = getFilteredTorrents(store, prefs);
 
       expect(filteredTorrents[0].status).toBe(STATUS_STOPPED);

@@ -3,8 +3,8 @@ import CSSModules from 'react-css-modules';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
-import { speedBps } from 'util/formatters';
-import { FilterStates } from 'stores/prefs-store';
+import { capitalizeFirstChar, speedBps } from 'util/formatters';
+import { mapFilterStates } from 'stores/prefs-store';
 
 import arrowUpImage from 'images/arrow-up.png';
 import arrowDownImage from 'images/arrow-down.png';
@@ -21,7 +21,7 @@ class FilterToolbar extends Component {
 
   @autobind onChangeFilterState(event) {
     this.deselectAllTorrents();
-    this.props.prefs_store.setStatusFilter(+event.target.value);
+    this.props.prefs_store.setStatusFilter(event.target.value);
   }
 
   @autobind onChangeFilterTracker(event) {
@@ -37,7 +37,6 @@ class FilterToolbar extends Component {
   render() {
     const torrentCount = this.props.stats_store.stats.torrentCount;
     const statusFilter = this.props.prefs_store.statusFilter;
-    const states = FilterStates;
 
     const trackers = this.props.torrents_store.trackers.map((domain) => {
       const label = domain.replace(/\b\w/g, l => l.toUpperCase()); // Capitalize
@@ -51,7 +50,7 @@ class FilterToolbar extends Component {
 
         <div styleName='filters'>
           <select onChange={this.onChangeFilterState} value={statusFilter}>
-            {states.map((state, index) => <option key={index} value={state.value}>{state.label}</option>)}
+            {mapFilterStates((state) => <option key={state} value={state} styleName='filter-option'>{capitalizeFirstChar(state)}</option>)}
           </select>
           <select onChange={this.onChangeFilterTracker}>
             <option value=''>All</option>

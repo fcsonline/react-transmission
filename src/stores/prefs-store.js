@@ -1,5 +1,4 @@
 import {observable, action} from 'mobx';
-import Torrent from './torrent';
 
 export const PrefCookieKeys = {
   prefs: 'prefs',
@@ -9,14 +8,19 @@ export const PrefCookieKeys = {
   compact: 'compact_display_state'
 }
 
-export const FilterStates = [
-  {value: -1, label: 'All', persistKey: 'all'},
-  {value: 11, label: 'Active', persistKey: 'active'},
-  {value: Torrent.STATUS_DOWNLOAD, label: 'Downloading', persistKey: 'downloading'},
-  {value: Torrent.STATUS_SEED, label: 'Seeding', persistKey: 'seeding'},
-  {value: Torrent.STATUS_STOPPED, label: 'Paused', persistKey: 'paused'},
-  {value: 55, label: 'Finished', persistKey: 'finished'},
-];
+export const FilterStates = {
+  All: 'all',
+  Active: 'active',
+  Seeding: 'seeding', 
+  Downloading: 'downloading',
+  Paused: 'paused',
+  Finished: 'finished'
+};
+
+// can't guarantee iteration order
+export function mapFilterStates (fn) {
+  return ['all', 'active', 'seeding', 'downloading', 'paused', 'finished'].map(fn)
+}
 
 class PrefsStore {
   @observable statusFilter;

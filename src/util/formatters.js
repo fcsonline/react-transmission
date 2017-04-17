@@ -285,3 +285,7 @@ export function timestamp(value) {
 
   return [date, time, period].join(' ');
 }
+
+export function capitalizeFirstChar(str) {
+  return str.charAt(0).toUpperCase() + str.substring(1);
+}

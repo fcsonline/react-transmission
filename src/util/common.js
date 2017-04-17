@@ -26,4 +26,3 @@ export function toStringWithCommas(number) {
 export function findByProperty(arr, key, value) {
   return arr[arr.findIndex(o => o[key] === value)]
 }
-
