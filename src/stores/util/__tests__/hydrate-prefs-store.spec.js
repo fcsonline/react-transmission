@@ -1,3 +1,5 @@
+jest.mock('util/persistors')
+
 import React from 'react';
 import { PrefCookieKeys } from '../../prefs-store';
 import hydratePrefsStore from '../hydrate-prefs-store';
@@ -16,10 +18,12 @@ describe('hydrate-prefs-store', () => {
       });
     });
     it('persisted values', () => {
-      persistKey(PrefCookieKeys.statusFilter, 'finished');
-      persistKey(PrefCookieKeys.sortCriteria, 'age');
-      persistKey(PrefCookieKeys.sortDirection, 'descending');
-      persistKey(PrefCookieKeys.compact, true);
+      persistKey(PrefCookieKeys.prefs, JSON.stringify({
+        statusFilter: 'finished',
+        sortCriteria: 'age',
+        sortDirection: 'descending',
+        compact: true
+      }));
 
       const store = hydratePrefsStore();
 

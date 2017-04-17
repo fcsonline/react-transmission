@@ -2,6 +2,7 @@ import {observable, action} from 'mobx';
 import Torrent from './torrent';
 
 export const PrefCookieKeys = {
+  prefs: 'prefs',
   statusFilter: 'filter',
   sortCriteria: 'sort_method',
   sortDirection: 'sort_direction',
