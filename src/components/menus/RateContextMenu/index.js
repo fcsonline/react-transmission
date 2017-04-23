@@ -33,7 +33,7 @@ class RateContextMenu extends Component {
     const enabled = this.props.session_store.settings[`${directionKey}-enabled`];
 
     const rateList = {
-      '5':  '5 kB/s',
+      '5': '5 kB/s',
       '10': '10 kB/s',
       '20': '20 kB/s',
       '30': '30 kB/s',

@@ -10,8 +10,8 @@ function ContextMenu(props) {
       show={props.show}
       placement={props.placement}
       target={props.target}
-      shouldUpdatePosition={true}
-      rootClose={true}
+      shouldUpdatePosition
+      rootClose
       onHide={props.onHide}
     >
       <Menu {...props} />

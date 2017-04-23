@@ -12,7 +12,7 @@ function formatUL(torrent) {
 };
 
 function formatDL(torrent) {
-    return `↓ ${speedBps(torrent.rateDownload)}`;
+  return `↓ ${speedBps(torrent.rateDownload)}`;
 };
 
 // Downloading from 2 of 3 peer(s) and 2 webseed(s)
@@ -26,7 +26,7 @@ function formatDownloadFromPeersAndWebseeds(torrent, peerCount, webseedCount) {
     countString('web seed', 'web seeds', webseedCount),
     '-',
     formatDL(torrent),
-    formatUL(torrent)
+    formatUL(torrent),
   ].join(' ');
 }
 
@@ -37,7 +37,7 @@ function formatDownloadFromWebseeds(torrent, webseedCount) {
     countString('web seed', 'web seeds', webseedCount),
     '-',
     formatDL(torrent),
-    formatUL(torrent)
+    formatUL(torrent),
   ].join(' ');
 }
 
@@ -50,7 +50,7 @@ function formatDownloadFromSeeds(torrent, peerCount) {
     countString('peer', 'peers', peerCount),
     '-',
     formatDL(torrent),
-    formatUL(torrent)
+    formatUL(torrent),
   ].join(' ');
 }
 
@@ -76,7 +76,7 @@ function formatSeeding(torrent) {
     'of',
     countString('peer', 'peers', torrent.peersConnected),
     '-',
-    formatUL(torrent)
+    formatUL(torrent),
   ].join(' ');
 }
 
@@ -84,7 +84,7 @@ function formatChecking(torrent) {
   return [
     'Verifying local data (',
     percentString(100.0 * torrent.recheckProgress),
-    '% tested)'
+    '% tested)',
   ].join('');
 }
 
@@ -93,7 +93,7 @@ function formatSeedingShort(torrent) {
     'Ratio: ',
     ratioString(torrent.uploadRatio),
     ', ',
-    formatUL(torrent)
+    formatUL(torrent),
   ].join('');
 }
 

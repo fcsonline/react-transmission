@@ -19,22 +19,22 @@ class PeersTabPanel extends Component {
     return (
       <div>
         <h3>Connections</h3>
-        <TextRow id='peer-limit-per-torrent' label='Max peers per torrent'/>
-        <TextRow id='peer-limit-global' label='Max peers overall'/>
+        <TextRow id='peer-limit-per-torrent' label='Max peers per torrent' />
+        <TextRow id='peer-limit-global' label='Max peers overall' />
 
         <h3>Options</h3>
 
-        <SelectRow id='encryption' label='Encryption mode' options={encryption}/>
-        <CheckRow id='pex-enabled' label='Use PEX to find more peers' title="PEX is a tool for exchanging peer lists with the peers you're connected to."/>
-        <CheckRow id='dht-enabled' label='Use DHT to find more peers' title="DHT is a tool for finding peers without a tracker."/>
-        <CheckRow id='lpd-enabled' label='Use LPD to find more peers' title="LPD is a tool for finding peers on your local network."/>
+        <SelectRow id='encryption' label='Encryption mode' options={encryption} />
+        <CheckRow id='pex-enabled' label='Use PEX to find more peers' title="PEX is a tool for exchanging peer lists with the peers you're connected to." />
+        <CheckRow id='dht-enabled' label='Use DHT to find more peers' title='DHT is a tool for finding peers without a tracker.' />
+        <CheckRow id='lpd-enabled' label='Use LPD to find more peers' title='LPD is a tool for finding peers on your local network.' />
 
         <h3>Blocklist</h3>
-        <CheckValueRow idCheck='blocklist-enabled' idValue='blocklist-url' label='Enable blocklist'/>
+        <CheckValueRow idCheck='blocklist-enabled' idValue='blocklist-url' label='Enable blocklist' />
 
-        <div className="row">
-          <div className="key" id="blocklist-info">Blocklist has <span id="blocklist-size">?</span> rules</div>
-          <div className="value"><input type="button" id="blocklist-update-button" value="Update"/></div>
+        <div className='row'>
+          <div className='key' id='blocklist-info'>Blocklist has <span id='blocklist-size'>?</span> rules</div>
+          <div className='value'><input type='button' id='blocklist-update-button' value='Update' /></div>
         </div>
       </div>
     );

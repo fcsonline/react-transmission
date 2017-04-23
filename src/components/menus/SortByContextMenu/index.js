@@ -20,7 +20,7 @@ class SortByContextMenu extends Component {
   }
 
   @autobind onSetSortCriteria(sortCriteria) {
-    this.props.torrents_store.setSortCriteria(sortCriteria)
+    this.props.torrents_store.setSortCriteria(sortCriteria);
   }
 
   render() {

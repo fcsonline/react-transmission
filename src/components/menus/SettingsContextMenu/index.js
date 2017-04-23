@@ -65,7 +65,7 @@ class TorrentContextMenu extends Component {
           <li styleName='torrentMenuSeparator' />
           <li
             ref='downloadRateTarget'
-            styleName={this.props.view_store.isDownloadRateContextMenuShown? 'torrentMenuSelected' : 'torrentMenuSubitem'}
+            styleName={this.props.view_store.isDownloadRateContextMenuShown ? 'torrentMenuSelected' : 'torrentMenuSubitem'}
             onMouseEnter={this.onToggleDownloadRateContextMenu}
             onMouseLeave={this.onToggleDownloadRateContextMenu}
           >

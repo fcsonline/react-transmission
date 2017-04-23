@@ -46,7 +46,7 @@ class FilterToolbar extends Component {
     ];
 
     const trackers = this.props.torrents_store.trackers.map((domain) => {
-      const label = domain.replace(/\b\w/g, l => l.toUpperCase()); // Capitalize
+      const label = domain.replace(/\b\w/g, (l) => l.toUpperCase()); // Capitalize
 
       return {value: domain, label};
     });
@@ -63,17 +63,17 @@ class FilterToolbar extends Component {
             <option value=''>All</option>
             {trackers.map((tracker, index) => <option key={index} value={tracker.value}>{tracker.label}</option>)}
           </select>
-          <input styleName='filter' type='search' placeholder='Filter' onChange={this.onChangeFilterText}/>
+          <input styleName='filter' type='search' placeholder='Filter' onChange={this.onChangeFilterText} />
           <span styleName='counter'>{torrentCount} Transfers</span>
         </div>
 
         <div styleName='stats'>
           <span>
-            <img src={arrowDownImage} alt='Download speed' title='Download speed'/>
+            <img src={arrowDownImage} alt='Download speed' title='Download speed' />
             {speedBps(this.props.torrents_store.totalDownloadSpeed)}
           </span>
           <span>
-            <img src={arrowUpImage} alt='Upload speed' title='Upload speed'/>
+            <img src={arrowUpImage} alt='Upload speed' title='Upload speed' />
             {speedBps(this.props.torrents_store.totalUploadSpeed)}
           </span>
         </div>
