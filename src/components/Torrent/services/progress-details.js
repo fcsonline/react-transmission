@@ -31,7 +31,7 @@ function formatProgressMagnet(torrent) {
   return [
     'Magnetized transfer - ' + metaDataStatus + ' metadata (',
     percentString(percent),
-    '%)'
+    '%)',
   ].join('');
 }
 
@@ -52,7 +52,7 @@ export default function getProgressDetails(torrent) {
     // seed: '698.05 MiB'
     if (totalSize === sizeWhenDone) {
       c = [
-        size(totalSize)
+        size(totalSize),
       ];
     // partial seed: '127.21 MiB of 698.05 MiB (18.2%)'
     } else {
@@ -62,7 +62,7 @@ export default function getProgressDetails(torrent) {
         size(totalSize),
         ' (',
         percentString(100 * torrent.percentDone),
-        '%)'
+        '%)',
       ];
     }
 
@@ -82,7 +82,7 @@ export default function getProgressDetails(torrent) {
       size(sizeWhenDone),
       ' (',
       percentString(100 * torrent.percentDone),
-      '%)'
+      '%)',
     ];
   }
 

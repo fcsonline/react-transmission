@@ -11,7 +11,7 @@
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
-    "babel-eslint": "7.1.1",
+    "babel-eslint": "^7.2.2",
     "babel-jest": "17.0.2",
     "babel-loader": "6.2.7",
     "babel-plugin-syntax-trailing-function-commas": "^6.20.0",
@@ -27,13 +27,18 @@
     "detect-port": "1.0.1",
     "dotenv": "2.0.0",
     "enzyme": "^2.7.0",
-    "eslint": "3.8.1",
+    "eslint": "^3.19.0",
     "eslint-config-react-app": "^0.5.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-config-standard-react": "^4.3.0",
     "eslint-loader": "1.6.0",
-    "eslint-plugin-flowtype": "2.21.0",
-    "eslint-plugin-import": "2.0.1",
-    "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-react": "6.4.1",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
     "filesize": "3.3.0",
@@ -78,7 +83,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node --harmony_proxies scripts/test.js --env=jsdom"
+    "test": "node --harmony_proxies scripts/test.js --env=jsdom",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -121,6 +128,37 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "babel-eslint",
+    "extends": ["react-app", "standard", "standard-react"],
+    "rules": {
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "no-var": [
+        "error"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "react/no-unused-prop-types": [
+        "off"
+      ],
+      "react/prop-types": [
+        "off"
+      ],
+      "camelcase": [
+        "off"
+      ]
+    }
   }
 }

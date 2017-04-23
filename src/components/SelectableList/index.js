@@ -8,7 +8,6 @@ import styles from './styles/index.css';
 
 @CSSModules(styles)
 class SelectableList extends Component {
-
   @autobind onKeyDown(event) {
     const { children, lastSelectedItemId } = this.props;
     const code = event.nativeEvent.code;

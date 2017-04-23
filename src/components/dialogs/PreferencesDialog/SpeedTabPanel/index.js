@@ -11,8 +11,8 @@ import SelectRow from '../fields/SelectRow';
 @observer
 class SpeedTabPanel extends Component {
   render() {
-    const times = range(0, 1440, 15).reduce( (memo, item) => {
-      const hours = Math.round(item/60);
+    const times = range(0, 1440, 15).reduce((memo, item) => {
+      const hours = Math.round(item / 60);
       const minutes = item % 60;
 
       memo[item] = `${hours}:${minutes}`;
@@ -29,24 +29,24 @@ class SpeedTabPanel extends Component {
       '16': 'Thursday',
       '32': 'Friday',
       '64': 'Saturday',
-    }
+    };
 
     return (
       <div>
         <h3>Speed Limits</h3>
-        <CheckValueRow idCheck='speed-limit-up-enabled' idValue='speed-limit-up' label='Upload (kB/s)'/>
-        <CheckValueRow idCheck='speed-limit-down-enabled' idValue='speed-limit-down' label='Download (kB/s)'/>
+        <CheckValueRow idCheck='speed-limit-up-enabled' idValue='speed-limit-up' label='Upload (kB/s)' />
+        <CheckValueRow idCheck='speed-limit-down-enabled' idValue='speed-limit-down' label='Download (kB/s)' />
 
         <h3>Alternative Speed Limits</h3>
         <p>Override normal speed limits manually or at scheduled times</p>
 
-        <TextRow id='alt-speed-up' label='Upload (kB/s)'/>
-        <TextRow id='alt-speed-down' label='Download (kB/s)'/>
-        <CheckRow id='alt-speed-time-enabled' label='Scheduled Times'/>
+        <TextRow id='alt-speed-up' label='Upload (kB/s)' />
+        <TextRow id='alt-speed-down' label='Download (kB/s)' />
+        <CheckRow id='alt-speed-time-enabled' label='Scheduled Times' />
 
-        <SelectRow id='alt-speed-time-begin' label='From' options={times}/>
-        <SelectRow id='alt-speed-time-end' label='To' options={times}/>
-        <SelectRow id='alt-speed-time-day' label='On days' options={days}/>
+        <SelectRow id='alt-speed-time-begin' label='From' options={times} />
+        <SelectRow id='alt-speed-time-end' label='To' options={times} />
+        <SelectRow id='alt-speed-time-day' label='On days' options={days} />
       </div>
     );
   }

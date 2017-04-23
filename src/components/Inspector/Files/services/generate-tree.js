@@ -9,7 +9,7 @@ function buildEntryTree(entry, getEntryPath = (entry) => entry) {
       },
     };
   }, {});
-  }
+}
 
 function mergeEntryTrees(tree = {}, otherTree = {}) {
   // Merge arrays

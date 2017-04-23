@@ -41,13 +41,12 @@ class TorrentStore {
         'seedRatioMode', 'seedRatioLimit', 'sizeWhenDone', 'status', 'trackers',
         'downloadDir', 'uploadedEver', 'uploadRatio', 'webseedsSendingToUs',
 
-
         'activityDate', 'corruptEver', 'desiredAvailable', 'downloadedEver',
         'fileStats', 'haveUnchecked', 'haveValid', 'peers', 'startDate',
         'trackerStats', 'comment', 'creator', 'dateCreated', 'files',
-        'hashString', 'isPrivate', 'pieceCount', 'pieceSize'
+        'hashString', 'isPrivate', 'pieceCount', 'pieceSize',
 
-      ]
+      ],
     };
 
     if (torrentIds) {
@@ -66,7 +65,7 @@ class TorrentStore {
 
   @action fetchIds(torrentIds) {
     const data = {
-      fields: ['id']
+      fields: ['id'],
     };
 
     if (torrentIds) {

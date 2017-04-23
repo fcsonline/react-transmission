@@ -3,50 +3,51 @@ import { timestamp, countString, timeInterval } from 'util/formatters';
 import Tracker from 'stores/tracker';
 
 export function lastAnnounceStatus(tracker) {
-  var lastAnnounceLabel = 'Last Announce',
-      lastAnnounce = ['N/A'],
-      lastAnnounceTime;
+  let lastAnnounceLabel = 'Last Announce';
+  let lastAnnounce = ['N/A'];
+  let lastAnnounceTime;
 
   if (tracker.hasAnnounced) {
     lastAnnounceTime = timestamp(tracker.lastAnnounceTime);
 
     if (tracker.lastAnnounceSucceeded) {
-        lastAnnounce = [lastAnnounceTime, ' (got ', countString('peer', 'peers', tracker.lastAnnouncePeerCount), ')'];
+      lastAnnounce = [lastAnnounceTime, ' (got ', countString('peer', 'peers', tracker.lastAnnouncePeerCount), ')'];
     } else {
-        lastAnnounceLabel = 'Announce error';
-        lastAnnounce = [(tracker.lastAnnounceResult ? (tracker.lastAnnounceResult + ' - ') : ''), lastAnnounceTime];
+      lastAnnounceLabel = 'Announce error';
+      lastAnnounce = [(tracker.lastAnnounceResult ? (tracker.lastAnnounceResult + ' - ') : ''), lastAnnounceTime];
     }
   }
 
   return {
     label: lastAnnounceLabel,
-    value: lastAnnounce.join('')
+    value: lastAnnounce.join(''),
   };
 }
 
 export function getAnnounceState(tracker) {
-  var timeUntilAnnounce, s = '';
+  let timeUntilAnnounce;
+  let s = '';
 
   switch (tracker.announceState) {
-  case Tracker.STATUS_ACTIVE:
+    case Tracker.STATUS_ACTIVE:
       s = 'Announce in progress';
       break;
-  case Tracker.STATUS_WAITING:
+    case Tracker.STATUS_WAITING:
       timeUntilAnnounce = tracker.nextAnnounceTime - ((new Date()).getTime() / 1000);
       if (timeUntilAnnounce < 0) {
-          timeUntilAnnounce = 0;
+        timeUntilAnnounce = 0;
       }
       s = 'Next announce in ' + timeInterval(timeUntilAnnounce);
       break;
-  case Tracker.STATUS_QUEUED:
+    case Tracker.STATUS_QUEUED:
       s = 'Announce is queued';
       break;
-  case Tracker.STATUS_INACTIVE:
-      s = tracker.isBackup ?
-          'Tracker will be used as a backup' :
-          'Announce not scheduled';
+    case Tracker.STATUS_INACTIVE:
+      s = tracker.isBackup
+          ? 'Tracker will be used as a backup'
+          : 'Announce not scheduled';
       break;
-  default:
+    default:
       s = 'unknown announce state: ' + tracker.announceState;
   }
   return s;
@@ -69,6 +70,6 @@ export function lastScrapeStatus(tracker) {
 
   return {
     label: lastScrapeLabel,
-    value: lastScrape
+    value: lastScrape,
   };
 }
