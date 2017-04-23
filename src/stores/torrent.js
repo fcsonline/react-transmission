@@ -1,4 +1,5 @@
 import { computed, extendObservable } from 'mobx';
+import autobind from 'autobind-decorator';
 import { zip } from 'lodash';
 
 class Torrent {
@@ -27,6 +28,18 @@ class Torrent {
     }
 
     return this.collatedName || '';
+  }
+
+  @autobind getPeersGettingFromUs () {
+    return this.peersGettingFromUs;
+  }
+
+  @autobind getPeersSendingToUs () {
+    return this.peersSendingToUs;
+  }
+
+  @autobind getWebseedsSendingToUs () {
+    return this.webseedsSendingToUs;
   }
 
   @computed get hasErrors() {
