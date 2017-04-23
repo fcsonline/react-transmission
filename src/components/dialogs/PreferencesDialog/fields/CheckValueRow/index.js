@@ -15,11 +15,11 @@ class CheckValueRow extends Component {
     return (
       <div styleName='row'>
         <div styleName='key'>
-          <input type="checkbox" id={this.props.idCheck} defaultChecked={check}/>
+          <input type='checkbox' id={this.props.idCheck} defaultChecked={check} />
           <label htmlFor={this.props.idCheck}>{this.props.label}</label>
         </div>
         <div styleName='value'>
-          <input type='number' min='0' id={this.props.idValue} defaultValue={value} disabled={!check}/>
+          <input type='number' min='0' id={this.props.idValue} defaultValue={value} disabled={!check} />
         </div>
       </div>
     );

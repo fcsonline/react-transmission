@@ -20,7 +20,7 @@ class SortByContextMenu extends Component {
   }
 
   @autobind onSetSortCriteria(sortCriteria) {
-    this.props.torrents_store.setSortCriteria(sortCriteria)
+    this.props.torrents_store.setSortCriteria(sortCriteria);
   }
 
   render() {
@@ -50,7 +50,7 @@ class SortByContextMenu extends Component {
           onMouseLeave={this.onToggleSortByContextMenu}
         >
           {Object.keys(criteriaList).map((key) => (
-            <li key={key} styleName={sortCriteria === key ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={this.onSetSortCriteria.bind(this, key)}>{criteriaList[key]}</li>
+            <li key={key} styleName={sortCriteria === key ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={() => this.onSetSortCriteria(key)}>{criteriaList[key]}</li>
           ))}
 
           <li styleName='torrentMenuSeparator' />

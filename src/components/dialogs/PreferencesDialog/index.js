@@ -5,12 +5,12 @@ import autobind from 'autobind-decorator';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import Dialog from '../Dialog'
+import Dialog from '../Dialog';
 
-import TorrentsTabPanel from './TorrentsTabPanel'
-import SpeedTabPanel from './SpeedTabPanel'
-import PeersTabPanel from './PeersTabPanel'
-import NetworkTabPanel from './NetworkTabPanel'
+import TorrentsTabPanel from './TorrentsTabPanel';
+import SpeedTabPanel from './SpeedTabPanel';
+import PeersTabPanel from './PeersTabPanel';
+import NetworkTabPanel from './NetworkTabPanel';
 
 import styles from './styles/index.css';
 
@@ -59,16 +59,16 @@ class PreferencesDialog extends Component {
                 <Tab>Network</Tab>
               </TabList>
               <TabPanel>
-                <TorrentsTabPanel/>
+                <TorrentsTabPanel />
               </TabPanel>
               <TabPanel>
-                <SpeedTabPanel/>
+                <SpeedTabPanel />
               </TabPanel>
               <TabPanel>
-                <PeersTabPanel/>
+                <PeersTabPanel />
               </TabPanel>
               <TabPanel>
-                <NetworkTabPanel/>
+                <NetworkTabPanel />
               </TabPanel>
             </Tabs>
           </div>

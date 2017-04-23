@@ -8,7 +8,6 @@ import styles from './styles/index.css';
 
 @CSSModules(styles)
 class SelectableList extends Component {
-
   @autobind onKeyDown(event) {
     const { children, lastSelectedItemId } = this.props;
     const code = event.nativeEvent.code;
@@ -30,7 +29,11 @@ class SelectableList extends Component {
   }
 
   @autobind onContextMenu(event, id) {
-    this.props.onSelectItem(id);
+    const {selectedItemIds} = this.props;
+
+    if (!selectedItemIds.includes(id)) {
+      this.props.onSelectItem(id);
+    }
   }
 
   @autobind onClick(event, id) {

@@ -9,7 +9,7 @@ class WantedButton extends Component {
     super(props);
 
     this.state = {
-      checked:  props.wanted,
+      checked: props.wanted,
     };
   }
 

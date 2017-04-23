@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { findDOMNode } from 'react-dom'
+import { findDOMNode } from 'react-dom';
 import CSSModules from 'react-css-modules';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
@@ -83,14 +83,14 @@ class StatusToolbar extends Component {
     return (
       <div styleName='toolbar'>
         <button styleName='button' onClick={this.onToggleSettings}>
-          <img src={settingsImage} alt='Settings'/>
+          <img src={settingsImage} alt='Settings' />
         </button>
         <button styleName='button' onClick={this.onTogglePreferences}>
-          <img src={preferencesImage} alt='Preferences'/>
+          <img src={preferencesImage} alt='Preferences' />
         </button>
-        <button className={turtleClassName} onClick={this.onToggleTurtle} title='Speed limit'></button>
+        <button className={turtleClassName} onClick={this.onToggleTurtle} title='Speed limit' />
         <button className={compactClassName} onClick={this.onToggleCompact}>
-          <img src={compactImage} alt='Compact view'/>
+          <img src={compactImage} alt='Compact view' />
         </button>
         {this.renderContextMenu()}
       </div>

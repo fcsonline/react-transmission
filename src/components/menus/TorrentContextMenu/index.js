@@ -30,7 +30,7 @@ class TorrentContextMenu extends Component {
   @autobind trashAndRemove() {
     // TODO: Confirm dialog
     this.props.torrents_store.remove(this.props.view_store.selectedTorrents, {
-      'delete-local-data': true
+      'delete-local-data': true,
     });
   }
 

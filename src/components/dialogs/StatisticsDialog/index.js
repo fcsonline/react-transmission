@@ -5,7 +5,7 @@ import autobind from 'autobind-decorator';
 
 import { size, timeInterval } from 'util/formatters';
 
-import Dialog from '../Dialog'
+import Dialog from '../Dialog';
 
 import styles from './styles/index.css';
 
@@ -13,13 +13,11 @@ import styles from './styles/index.css';
 @observer
 @CSSModules(styles)
 class StatisticsDialog extends Component {
-
   @autobind onHide() {
     this.props.view_store.toggleStatisticsDialog();
   }
 
   render() {
-
     if (!this.props.view_store.isStatisticsDialogShown) {
       return false;
     }

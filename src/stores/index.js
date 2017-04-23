@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { useStrict } from 'mobx';
 
 import RPC from 'util/rpc';

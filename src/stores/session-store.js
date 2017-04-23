@@ -1,4 +1,4 @@
-import { observable, action} from 'mobx';
+import { observable, action } from 'mobx';
 
 class SessionStore {
   @observable sessionId = null;
@@ -15,7 +15,7 @@ class SessionStore {
         response.json().then(action((result) => {
           this.settings = result.arguments;
         }));
-    }));
+      }));
   }
 
   @action testPort(port) {
@@ -24,12 +24,12 @@ class SessionStore {
         return response.json().then(action((result) => {
           return result.arguments['port-is-open'];
         }));
-    }));
+      }));
   }
 
   @action getFreeSpace(downloadDir) {
     const data = {
-      path: downloadDir
+      path: downloadDir,
     };
 
     return this.rpc.sendRequest('free-space', data)
@@ -37,7 +37,7 @@ class SessionStore {
         response.json().then(action((result) => {
           this.freeSpace = result.arguments['size-bytes'];
         }));
-    }));
+      }));
   }
 
   @action setRateLimit(direction, value) {
@@ -46,11 +46,11 @@ class SessionStore {
     if (value > 0) {
       data = {
         [`speed-limit-${direction}`]: value,
-        [`speed-limit-${direction}-enabled`]: true
+        [`speed-limit-${direction}-enabled`]: true,
       };
     } else {
       data = {
-        [`speed-limit-${direction}-enabled`]: false
+        [`speed-limit-${direction}-enabled`]: false,
       };
     }
 
@@ -66,7 +66,7 @@ class SessionStore {
 
   @action setPreference(id, value) {
     const data = {
-      [id]: value
+      [id]: value,
     };
 
     this.settings = {

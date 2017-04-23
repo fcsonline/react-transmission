@@ -15,7 +15,7 @@ class TextRow extends Component {
       <div styleName='row'>
         <div styleName='key'>{this.props.label}:</div>
         <div styleName='value'>
-          <input type='text' id={this.props.id} defaultValue={value}/>
+          <input type='text' id={this.props.id} defaultValue={value} />
         </div>
       </div>
     );

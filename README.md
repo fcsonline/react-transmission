@@ -40,6 +40,30 @@ The official [Transmission repository](https://github.com/transmission/transmiss
 
 ## Installation
 
+If you want to test this project without dealing with all the Node.js stuff, you can download the lastest release from here:
+
+https://github.com/fcsonline/react-transmission/releases
+
+Decompress it with:
+
+```
+unzip react-transmission-X.X.X.zip
+```
+
+Then, set this environment variable in your `.bashrc`
+
+```bash
+export TRANSMISSION_WEB_HOME=<path to react-transmission>
+```
+
+And start your Transmission instance. If everything gone well, your
+`react-transmission` instance should be like the previous one but you can
+differenciate because the background is a bit light yellow.
+
+Happy testing!
+
+## Developement environment
+
 To be able to build this project, execute:
 
 ```bash
