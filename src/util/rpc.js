@@ -1,37 +1,4 @@
-import agent from 'superagent';
-
-function toMap(object) {
-  return new Map(
-    Object.keys(object).reduce((arr, key) => [...arr, [key, object[key]]], [])
-  );
-}
-
-function fetch(url, { headers, body, method }) {
-  return new Promise((resolve, reject) => {
-    agent[method](url)
-      .type('application/json')
-      .accept('application/json')
-      .set(headers)
-      .send(body)
-      .end((err, response) => {
-        // Network or timeout error
-        if (err && !err.status && !err.response) {
-          reject(err);
-        }
-
-        // HTTP error 4xx or 5xx
-        if (err && err.status) {
-          resolve({status: err.status, headers: toMap(response.headers)});
-        }
-
-        if (!err && response) {
-          resolve({json: () => Promise.resolve(response.body)});
-        }
-
-        reject(new Error('Invalid state'));
-      });
-  });
-}
+import 'whatwg-fetch';
 
 class RPC {
   static SESSION_ID_HEADER = 'X-Transmission-Session-Id';
