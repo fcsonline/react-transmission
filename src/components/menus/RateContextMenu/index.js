@@ -61,11 +61,11 @@ class RateContextMenu extends Component {
           onMouseEnter={this.onToggleRateContextMenu}
           onMouseLeave={this.onToggleRateContextMenu}
         >
-          <li styleName={!enabled ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={this.onSetRateLimit.bind(this, 0)}>Unlimited</li>
-          <li styleName={ enabled ? 'torrentMenuSelected' : 'torrentMenuItem'}>Limit ({rateList[`${rateLimit}`]})</li>
+          <li styleName={!enabled ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={() => this.onSetRateLimit(0)}>Unlimited</li>
+          <li styleName={enabled ? 'torrentMenuSelected' : 'torrentMenuItem'}>Limit ({rateList[`${rateLimit}`]})</li>
           <li styleName='torrentMenuSeparator' />
           {Object.keys(rateList).map((key) => (
-            <li key={key} styleName='torrentMenuItem' onClick={this.onSetRateLimit.bind(this, +key)}>{rateList[key]}</li>
+            <li key={key} styleName='torrentMenuItem' onClick={() => this.onSetRateLimit(+key)}>{rateList[key]}</li>
           ))}
 
         </ul>
