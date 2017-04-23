@@ -84,7 +84,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node --harmony_proxies scripts/test.js --env=jsdom",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -148,6 +149,15 @@
       "space-before-function-paren": [
         "error",
         "never"
+      ],
+      "react/no-unused-prop-types": [
+        "off"
+      ],
+      "react/prop-types": [
+        "off"
+      ],
+      "camelcase": [
+        "off"
       ]
     }
   }
