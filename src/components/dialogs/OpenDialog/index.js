@@ -39,6 +39,14 @@ class OpenDialog extends Component {
     this.props.view_store.toggleOpenDialog();
   }
 
+  @autobind onKeyDown(event) {
+    const key = event.key;
+
+    if (key === 'Enter') {
+      this.onUpload(event);
+    }
+  }
+
   @autobind onChangeFiles({ target }) {
     this.torrentUpload.setTorrentFiles(target.files);
   }
@@ -83,7 +91,7 @@ class OpenDialog extends Component {
             <img src={logoImage} alt='logo' />
           </div>
           <div styleName='form'>
-            <form onChange={this.onChange}>
+            <form onKeyDown={this.onKeyDown} onChange={this.onChange}>
               <section>
                 <fieldset>
                   <label>Please select a torrent file to upload:</label>

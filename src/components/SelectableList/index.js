@@ -10,16 +10,16 @@ import styles from './styles/index.css';
 class SelectableList extends Component {
   @autobind onKeyDown(event) {
     const { children, lastSelectedItemId } = this.props;
-    const code = event.nativeEvent.code;
+    const key = event.key;
     const childIds = children.map((child) => child.props.id);
     const position = childIds.indexOf(lastSelectedItemId);
     let newSelectedId;
 
-    if (code === 'ArrowUp') {
+    if (key === 'ArrowUp') {
       newSelectedId = childIds[position - 1];
     }
 
-    if (code === 'ArrowDown') {
+    if (key === 'ArrowDown') {
       newSelectedId = childIds[position + 1];
     }
 
