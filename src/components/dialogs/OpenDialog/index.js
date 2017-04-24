@@ -40,9 +40,9 @@ class OpenDialog extends Component {
   }
 
   @autobind onKeyDown(event) {
-    const code = event.nativeEvent.code;
+    const key = event.key;
 
-    if (code === 'Enter') {
+    if (key === 'Enter') {
       this.onUpload(event);
     }
   }
