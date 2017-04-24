@@ -19,7 +19,6 @@ test('Error track warning', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-
 test('Error track error', () => {
   const component = createComponentWithIntl(
     <Error torrent={{error: ERR_TRACKER_ERROR, errorDescription: 'Test error'}} />

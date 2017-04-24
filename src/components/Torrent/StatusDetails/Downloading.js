@@ -58,12 +58,12 @@ export default function({ torrent }) {
   const { peersConnected, webseedsSendingToUs } = torrent;
 
   if (webseedsSendingToUs && peersConnected) {
-    return <DownloadingFromPeersAndWebSeeds torrent={torrent} />
+    return <DownloadingFromPeersAndWebSeeds torrent={torrent} />;
   }
 
   if (webseedsSendingToUs) {
-    return <DownloadingFromWebSeeds torrent={torrent} />
+    return <DownloadingFromWebSeeds torrent={torrent} />;
   }
 
-  return <DownloadingFromPeers torrent={torrent} />
+  return <DownloadingFromPeers torrent={torrent} />;
 }

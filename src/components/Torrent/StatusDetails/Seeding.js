@@ -13,4 +13,4 @@ export default ({ torrent: { peersGettingFromUs, peersConnected, rateUpload } })
       formattedRateUpload: formatUL(rateUpload),
     }}
   />
-)
+);

@@ -13,7 +13,7 @@ const messages = defineMessages({
 });
 
 function ProgressMagnet({ torrent, intl }) {
-  const metadataStatus = torrent.isStopped ?  messages.needs : messages.retrieving;
+  const metadataStatus = torrent.isStopped ? messages.needs : messages.retrieving;
 
   return (
     <FormattedMessage

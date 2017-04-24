@@ -48,11 +48,11 @@ function LocalError({ torrent }) {
 export default function({ torrent }) {
   switch (torrent.error) {
     case ERR_TRACKER_WARNING:
-      return <TrackerWarning torrent={torrent} />
+      return <TrackerWarning torrent={torrent} />;
     case ERR_TRACKER_ERROR:
-      return <TrackerError torrent={torrent} />
+      return <TrackerError torrent={torrent} />;
     case ERR_LOCAL_ERROR:
-      return <LocalError torrent={torrent} />
+      return <LocalError torrent={torrent} />;
     default:
       return null;
   }
