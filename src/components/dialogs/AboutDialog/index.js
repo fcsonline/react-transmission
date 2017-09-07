@@ -1,31 +1,31 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
 import Dialog from '../Dialog';
 import logoImage from 'images/logo.png';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'session_store')
+@themr('AboutDialog')
 @observer
-@CSSModules(styles)
 class AboutDialog extends Component {
   @autobind onHide() {
     this.props.view_store.toggleAboutDialog();
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <Dialog
         show={this.props.view_store.isAboutDialogShown}
         onHide={this.onHide}
         header='About'
       >
-        <div styleName='body'>
-          <div styleName='content'>
-            <div styleName='logo'>
+        <div className={theme.body}>
+          <div className={theme.content}>
+            <div className={theme.logo}>
               <img src={logoImage} alt='logo' />
             </div>
 

@@ -1,9 +1,6 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
 
 import PeerGroup from './PeerGroup';
-
-import styles from './styles/index.css';
 
 function Peers({ info }) {
   return (
@@ -18,4 +15,4 @@ function Peers({ info }) {
   );
 }
 
-export default CSSModules(styles)(Peers);
+export default Peers;

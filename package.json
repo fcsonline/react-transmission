@@ -72,18 +72,20 @@
     "mobx": "2.4.1",
     "mobx-react": "3.5.3",
     "mobx-react-devtools": "^4.2.11",
-    "normalize.css": "^5.0.0",
+    "normalize.css": "^7.0.0",
+    "query-string": "^5.0.0",
     "react": "^15.4.2",
     "react-css-modules": "3.7.10",
+    "react-css-themr": "^2.1.2",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.8.0",
     "react-overlays": "0.6.10",
-    "react-tabs": "^0.8.2"
+    "react-tabs": "1.1.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node --harmony_proxies scripts/test.js --env=jsdom",
+    "test": "node --harmony scripts/test.js --env=jsdom",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src"
   },
@@ -129,7 +131,11 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["react-app", "standard", "standard-react"],
+    "extends": [
+      "react-app",
+      "standard",
+      "standard-react"
+    ],
     "rules": {
       "arrow-parens": [
         "error",

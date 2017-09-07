@@ -1,15 +1,18 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import React, { Component } from 'react';
+import { themr } from 'react-css-themr';
 
-import styles from './styles/index.css';
+@themr('Inspector')
+class ActivityRow extends Component {
+  render() {
+    const { theme, label, value } = this.props;
 
-function ActivityRow({ label, value }) {
-  return (
-    <div styleName='row'>
-      <div styleName='key'>{label}:</div>
-      <div styleName='value'>{value}</div>
-    </div>
-  );
+    return (
+      <div className={theme.row}>
+        <div className={theme.key}>{label}:</div>
+        <div className={theme.value}>{value}</div>
+      </div>
+    );
+  }
 }
 
-export default CSSModules(styles)(ActivityRow);
+export default ActivityRow;

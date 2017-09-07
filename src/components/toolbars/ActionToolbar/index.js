@@ -1,21 +1,11 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
-import toolbarFolderImage from 'images/toolbar-folder.png';
-import toolbarCloseImage from 'images/toolbar-close.png';
-import toolbarPauseImage from 'images/toolbar-pause.png';
-import toolbarStartImage from 'images/toolbar-start.png';
-import toolbarPauseAllImage from 'images/toolbar-pause-all.png';
-import toolbarStartAllImage from 'images/toolbar-start-all.png';
-import toolbarInfoImage from 'images/toolbar-info.png';
-
-import styles from './styles/index.css';
-
 @inject('torrents_store', 'view_store')
+@themr('ActionToolbar')
 @observer
-@CSSModules(styles)
 class ActionToolbar extends Component {
   @autobind onOpen() {
     this.props.view_store.toggleOpenDialog();
@@ -50,7 +40,7 @@ class ActionToolbar extends Component {
   }
 
   render() {
-    const { view_store, torrents_store } = this.props;
+    const { theme, view_store, torrents_store } = this.props;
 
     const selectedTorrents = torrents_store.getByIds(view_store.selectedTorrents);
     const isAnySelected = selectedTorrents.length > 0;
@@ -58,29 +48,53 @@ class ActionToolbar extends Component {
     const isAnyPaused = selectedTorrents.some((torrent) => torrent.isStopped);
 
     return (
-      <div styleName='toolbar'>
-        <button styleName='button' onClick={this.onOpen}>
-          <img src={toolbarFolderImage} title='Open Torrent' alt='Open Torrent' />
+      <div className={theme.toolbar}>
+        <button
+          className={theme.button}
+          onClick={this.onOpen}
+          title='Open Torrent'>
+          <div className={theme.openImage} />
         </button>
-        <button styleName='button' onClick={this.onRemove} disabled={!isAnySelected}>
-          <img src={toolbarCloseImage} title='Remove Selected Torrents' alt='Remove Selected Torrents' />
+        <button
+          className={theme.button}
+          onClick={this.onRemove}
+          disabled={!isAnySelected}
+          title='Remove Selected Torrents'>
+          <div className={theme.removeImage} />
         </button>
-        <span styleName='separator' />
-        <button styleName='button' onClick={this.onStart} disabled={!isAnyPaused}>
-          <img src={toolbarStartImage} title='Start Selected Torrents' alt='Start Selected Torrents' />
+        <span className={theme.separator} />
+        <button
+          className={theme.button}
+          onClick={this.onStart}
+          disabled={!isAnyPaused}
+          title='Start Selected Torrents'>
+          <div className={theme.startImage} />
         </button>
-        <button styleName='button' onClick={this.onPause} disabled={!isAnyStarted}>
-          <img src={toolbarPauseImage} title='Pause Selected Torrents' alt='Pause Selected Torrents' />
+        <button
+          className={theme.button}
+          onClick={this.onPause}
+          disabled={!isAnyStarted}
+          title='Pause Selected Torrents'>
+          <div className={theme.pauseImage} />
         </button>
-        <span styleName='separator' />
-        <button styleName='button' onClick={this.onStartAll}>
-          <img src={toolbarStartAllImage} title='Start All Torrents' alt='Start All Torrents' />
+        <span className={theme.separator} />
+        <button
+          className={theme.button}
+          onClick={this.onStartAll}
+          title='Start All Torrents'>
+          <div className={theme.startAllImage} />
         </button>
-        <button styleName='button' onClick={this.onPauseAll}>
-          <img src={toolbarPauseAllImage} title='Pause All Torrents' alt='Pause All Torrents' />
+        <button
+          className={theme.button}
+          onClick={this.onPauseAll}
+          title='Pause All Torrents'>
+          <div className={theme.pauseAllImage} />
         </button>
-        <button className={`${styles.button} ${styles.inspector}`} onClick={this.onToggleInspector}>
-          <img src={toolbarInfoImage} title='Toggle inspector' alt='Toggle inspector' />
+        <button
+          className={`${theme.button} ${theme.inspector}`}
+          onClick={this.onToggleInspector}
+          title='Toggle inspector'>
+          <div className={theme.inspectorImage} />
         </button>
       </div>
     );

@@ -1,12 +1,10 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import autobind from 'autobind-decorator';
 
 import Item from './Item';
 
-import styles from './styles/index.css';
-
-@CSSModules(styles)
+@themr('SelectableList')
 class SelectableList extends Component {
   @autobind onKeyDown(event) {
     const { children, lastSelectedItemId } = this.props;
@@ -59,15 +57,15 @@ class SelectableList extends Component {
   }
 
   render() {
-    const {selectedItemIds} = this.props;
+    const { theme, selectedItemIds } = this.props;
 
     return (
-      <ul styleName='list' onKeyDown={this.onKeyDown}>
+      <ul className={theme.list} onKeyDown={this.onKeyDown}>
         {this.props.children.map((child, index) => {
           const childId = child.props.id;
           const isSelected = selectedItemIds.includes(childId);
           const isEven = index % 2 === 1; // Zero indexed.
-          const className = `${styles.row} ${isSelected ? styles.selected : ''} ${isEven ? styles.even : ''}`;
+          const className = `${theme.row} ${isSelected ? theme.selected : ''} ${isEven ? theme.even : ''}`;
 
           return (
             <li

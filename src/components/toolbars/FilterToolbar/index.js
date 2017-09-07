@@ -1,19 +1,14 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
 import { speedBps } from 'util/formatters';
 import Torrent from 'stores/torrent';
 
-import arrowUpImage from 'images/arrow-up.png';
-import arrowDownImage from 'images/arrow-down.png';
-
-import styles from './styles/index.css';
-
 @inject('view_store', 'stats_store', 'torrents_store')
+@themr('FilterToolbar')
 @observer
-@CSSModules(styles)
 class FilterToolbar extends Component {
   @autobind deselectAllTorrents() {
     this.props.view_store.selectTorrents([]);
@@ -35,6 +30,7 @@ class FilterToolbar extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const torrentCount = this.props.stats_store.stats.torrentCount;
     const states = [
       {value: -1, label: 'All'},
@@ -52,10 +48,10 @@ class FilterToolbar extends Component {
     });
 
     return (
-      <div styleName='toolbar'>
+      <div className={theme.toolbar}>
         <span>Show</span>
 
-        <div styleName='filters'>
+        <div className={theme.filters}>
           <select onChange={this.onChangeFilterState}>
             {states.map((state, index) => <option key={index} value={state.value}>{state.label}</option>)}
           </select>
@@ -63,17 +59,17 @@ class FilterToolbar extends Component {
             <option value=''>All</option>
             {trackers.map((tracker, index) => <option key={index} value={tracker.value}>{tracker.label}</option>)}
           </select>
-          <input styleName='filter' type='search' placeholder='Filter' onChange={this.onChangeFilterText} />
-          <span styleName='counter'>{torrentCount} Transfers</span>
+          <input className={theme.filter} type='search' placeholder='Filter' onChange={this.onChangeFilterText} />
+          <span className={theme.counter}>{torrentCount} Transfers</span>
         </div>
 
-        <div styleName='stats'>
-          <span>
-            <img src={arrowDownImage} alt='Download speed' title='Download speed' />
+        <div className={theme.stats}>
+          <span title='Download speed'>
+            <div className={theme.downImage} />
             {speedBps(this.props.torrents_store.totalDownloadSpeed)}
           </span>
-          <span>
-            <img src={arrowUpImage} alt='Upload speed' title='Upload speed' />
+          <span title='Upload speed'>
+            <div className={theme.upImage} />
             {speedBps(this.props.torrents_store.totalUploadSpeed)}
           </span>
         </div>

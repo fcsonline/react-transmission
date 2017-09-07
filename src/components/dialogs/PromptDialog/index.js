@@ -1,13 +1,11 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import autobind from 'autobind-decorator';
 
 import Dialog from '../Dialog';
 import logoImage from 'images/logo.png';
 
-import styles from './styles/index.css';
-
-@CSSModules(styles)
+@themr('PromptDialog')
 class PromptDialog extends Component {
   constructor(props) {
     super(props);
@@ -42,23 +40,25 @@ class PromptDialog extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <Dialog
         show={this.props.toggle}
         onHide={this.onHide}
         header={this.props.header}
       >
-        <div styleName='body'>
-          <div styleName='logo'>
+        <div className={theme.body}>
+          <div className={theme.logo}>
             <img src={logoImage} alt='logo' />
           </div>
-          <div styleName='content'>
+          <div className={theme.content}>
             { this.props.question &&
               <p>{this.props.question}:</p>
             }
             <input type='text' onChange={this.onChange} value={this.state.value} />
 
-            <section styleName='buttons'>
+            <section className={theme.buttons}>
               <button onClick={this.onHide}>Cancel</button>
               <button onClick={this.onSubmit}>{ this.props.action || 'Ok' }</button>
             </section>

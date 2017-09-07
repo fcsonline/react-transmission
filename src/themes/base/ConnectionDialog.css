@@ -1,0 +1,14 @@
+.body {
+  composes: body from "./Dialog.css";
+  padding: 20px;
+}
+
+.logo {
+  composes: logo from "./Dialog.css";
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+}

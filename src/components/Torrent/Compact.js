@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
 import ProgressBar from './ProgressBar';
 
 import { getPeerDetailsShort } from './services';
 
-import styles from './styles/index.css';
-
 @inject('view_store')
+@themr('Torrent')
 @observer
-@CSSModules(styles)
 class Compact extends Component {
   render() {
-    const torrent = this.props.torrent;
+    const { theme, torrent } = this.props;
 
     return (
-      <div styleName='torrentCompact'>
-        <div styleName='nameCompact'>
+      <div className={theme.torrentCompact}>
+        <div className={theme.nameCompact}>
           {torrent.name}
         </div>
-        <div styleName='detailsCompact'>
+        <div className={theme.detailsCompact}>
           {getPeerDetailsShort(torrent)}
         </div>
-        <div styleName='progressBarRowCompact'>
+        <div className={theme.progressBarRowCompact}>
           <ProgressBar torrent={torrent} />
         </div>
       </div>

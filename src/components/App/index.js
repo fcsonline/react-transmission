@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import DevTools, { setLogEnabled } from 'mobx-react-devtools';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
@@ -18,8 +18,6 @@ import StatisticsDialog from 'components/dialogs/StatisticsDialog';
 import AboutDialog from 'components/dialogs/AboutDialog';
 import PromptDialog from 'components/dialogs/PromptDialog';
 
-import styles from './styles/index.css';
-
 setLogEnabled(false);
 
 function renderDevTools() {
@@ -32,8 +30,8 @@ function renderDevTools() {
  * App component acts as the application layout.
  */
 @inject('torrents_store', 'stats_store', 'session_store', 'view_store')
+@themr('App')
 @observer
-@CSSModules(styles)
 class App extends Component {
   componentDidMount() {
     const PERMISSION_GRANTED = 'granted';
@@ -69,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const { view_store, torrents_store } = this.props;
+    const { theme, view_store, torrents_store } = this.props;
     const {
       selectedTorrents,
       isInspectorShown,
@@ -80,13 +78,13 @@ class App extends Component {
 
     return (
       <DropzoneLayer>
-        <div styleName='container' onClick={this.onToggleContextMenu}>
-          <header styleName='header'>
+        <div className={theme.container} onClick={this.onToggleContextMenu}>
+          <header className={theme.header}>
             <ActionToolbar />
             <FilterToolbar />
           </header>
-          <main styleName='main' role='main'>
-            <div styleName='list'>
+          <main className={theme.main} role='main'>
+            <div className={theme.list}>
               <SelectableList
                 selectedItemIds={view_store.selectedTorrents}
                 lastSelectedItemId={view_store.lastSelectedTorrent}
@@ -103,12 +101,12 @@ class App extends Component {
               </SelectableList>
             </div>
             { isInspectorShown &&
-            <div styleName='details'>
+            <div className={theme.details}>
               <Inspector />
             </div>
               }
           </main>
-          <footer styleName='footer'>
+          <footer className={theme.footer}>
             <StatusToolbar />
           </footer>
 

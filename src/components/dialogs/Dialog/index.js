@@ -1,37 +1,24 @@
 import React, { Component} from 'react';
 import { Modal } from 'react-overlays';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
 import Header from './Header';
 
-import styles from './styles/index.css';
-
 @inject('view_store')
+@themr('Dialog')
 @observer
-@CSSModules(styles)
 class Dialog extends Component {
   render() {
-    // TODO; try to investigate how to move this to css module
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      zIndex: 'auto',
-      backgroundColor: '#000',
-      opacity: 0.2,
-    };
+    const { theme } = this.props;
 
     return (
       <Modal
-        className={styles.modalStyle}
-        backdropStyle={backdropStyle}
+        backdropClassName={theme.backdrop}
         show={this.props.show}
         onHide={this.props.onHide}
       >
-        <div className={styles.dialogStyle}>
+        <div className={theme.dialog}>
           <Header title={this.props.header} onClose={this.props.onHide} />
           {this.props.children}
         </div>

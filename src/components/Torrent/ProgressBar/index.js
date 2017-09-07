@@ -1,7 +1,5 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
-
-import styles from './styles/index.css';
+import React, { Component } from 'react';
+import { themr } from 'react-css-themr';
 
 function getPercentage(torrent) {
   // TODO: Extract from session store if configure globally or grab torrent one
@@ -22,32 +20,37 @@ function getPercentage(torrent) {
   return 100;
 }
 
-function getProgressStyles(torrent) {
+function getProgressStyles(theme, torrent) {
   let barStyle = '';
 
   if (torrent.isStopped) {
-    barStyle = styles.paused;
+    barStyle = theme.paused;
   } else if (torrent.isDownloadingQueued) {
-    barStyle = styles.leechingQueued;
+    barStyle = theme.leechingQueued;
   } else if (torrent.needsMetaData) {
-    barStyle = styles.magnet;
+    barStyle = theme.magnet;
   } else if (torrent.isDownloading) {
-    barStyle = styles.leeching;
+    barStyle = theme.leeching;
   } else if (torrent.isSeedingQueued) {
-    barStyle = styles.seedingQueued;
+    barStyle = theme.seedingQueued;
   } else if (torrent.isSeeding) {
-    barStyle = styles.seeding;
+    barStyle = theme.seeding;
   }
 
-  return `${styles.progressBar} ${barStyle}`;
+  return `${theme.progressBar} ${barStyle}`;
 }
 
-function ProgressBar({ torrent }) {
-  return (
-    <div className={getProgressStyles(torrent)}>
-      <progress max='100' value={getPercentage(torrent)} />
-    </div>
-  );
+@themr('ProgressBar')
+class Compact extends Component {
+  render() {
+    const { theme, torrent } = this.props;
+
+    return (
+      <div className={getProgressStyles(theme, torrent)}>
+        <progress max='100' value={getPercentage(torrent)} />
+      </div>
+    );
+  }
 }
 
-export default CSSModules(ProgressBar, styles);
+export default Compact;

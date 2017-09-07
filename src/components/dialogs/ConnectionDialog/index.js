@@ -1,16 +1,14 @@
-import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import React, { Component } from 'react';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
 import Dialog from '../Dialog';
 import logoImage from 'images/logo.png';
 
-import styles from './styles/index.css';
-
 @inject('view_store')
+@themr('ConnectionDialog')
 @observer
-@CSSModules(styles)
 class ConnectionDialog extends Component {
   @autobind onDismiss(event) {
     event.preventDefault();
@@ -22,17 +20,19 @@ class ConnectionDialog extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <Dialog
         show={this.props.view_store.isConnectionDialogShown}
         onHide={this.onHide}
         header='Connection Failed'
       >
-        <div styleName='body'>
-          <div styleName='logo'>
+        <div className={theme.body}>
+          <div className={theme.logo}>
             <img src={logoImage} alt='logo' />
           </div>
-          <div styleName='content'>
+          <div className={theme.content}>
             <p>
               Could not connect to the server. You may need to reload the page to reconnect.
             </p>

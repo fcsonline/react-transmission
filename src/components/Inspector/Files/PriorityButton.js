@@ -1,38 +1,37 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import React, { Component } from 'react';
+import { themr } from 'react-css-themr';
 
-import lowImage from 'images/file-priority-low.png';
-import normalImage from 'images/file-priority-normal.png';
-import highImage from 'images/file-priority-high.png';
+@themr('Files')
+class PriorityButton extends Component {
+  render() {
+    const { theme, priority, fileIds, setPriority } = this.props;
 
-import styles from './styles/index.css';
-
-function PriorityButton({ priority, fileIds, setPriority }) {
-  return (
-    <div styleName='priorityButton'>
-      <button
-        title='Low Priority'
-        className={priority.includes(-1) ? styles.selected : ''}
-        onClick={() => setPriority({fileIds, priority: 'low'})}
-      >
-        <img src={lowImage} alt='Low Priority' />
-      </button>
-      <button
-        title='Normal Priority'
-        className={priority.includes(0) ? styles.selected : ''}
-        onClick={() => setPriority({fileIds, priority: 'normal'})}
-      >
-        <img src={normalImage} alt='Normal Priority' />
-      </button>
-      <button
-        title='High Priority'
-        className={priority.includes(1) ? styles.selected : ''}
-        onClick={() => setPriority({fileIds, priority: 'high'})}
-      >
-        <img src={highImage} alt='High Priority' />
-      </button>
-    </div>
-  );
+    return (
+      <div className={theme.priorityButton}>
+        <button
+          title='Low Priority'
+          className={priority.includes(-1) ? theme.selected : ''}
+          onClick={() => setPriority({fileIds, priority: 'low'})}
+        >
+          <div className={theme.lowImage} />
+        </button>
+        <button
+          title='Normal Priority'
+          className={priority.includes(0) ? theme.selected : ''}
+          onClick={() => setPriority({fileIds, priority: 'normal'})}
+        >
+          <div className={theme.normalImage} />
+        </button>
+        <button
+          title='High Priority'
+          className={priority.includes(1) ? theme.selected : ''}
+          onClick={() => setPriority({fileIds, priority: 'high'})}
+        >
+          <div className={theme.highImage} />
+        </button>
+      </div>
+    );
+  }
 }
 
-export default CSSModules(styles)(PriorityButton);
+export default PriorityButton;

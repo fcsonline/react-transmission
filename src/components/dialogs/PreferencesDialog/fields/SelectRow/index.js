@@ -1,14 +1,14 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
-import styles from './styles/index.css';
-
 @inject('session_store')
+@themr('PreferencesDialog')
 @observer
-@CSSModules(styles)
 class SelectRow extends Component {
   render() {
+    const { theme } = this.props;
+
     const options = Object.keys(this.props.options).map((key) => {
       return {
         key: key,
@@ -17,11 +17,11 @@ class SelectRow extends Component {
     });
 
     return (
-      <div styleName='row'>
-        <div styleName='key'>
+      <div className={theme.row}>
+        <div className={theme.key}>
           <label htmlFor={this.props.id}>{this.props.label}:</label>
         </div>
-        <div styleName='value'>
+        <div className={theme.value}>
           <select id={this.props.id}>
             {options.map((option) => (
               <option key={option.key} value={option.key}>{option.value}</option>

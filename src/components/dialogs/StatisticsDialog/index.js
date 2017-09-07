@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
@@ -7,17 +7,17 @@ import { size, timeInterval } from 'util/formatters';
 
 import Dialog from '../Dialog';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'stats_store')
+@themr('StatisticsDialog')
 @observer
-@CSSModules(styles)
 class StatisticsDialog extends Component {
   @autobind onHide() {
     this.props.view_store.toggleStatisticsDialog();
   }
 
   render() {
+    const { theme } = this.props;
+
     if (!this.props.view_store.isStatisticsDialogShown) {
       return false;
     }
@@ -31,45 +31,45 @@ class StatisticsDialog extends Component {
         onHide={this.onHide}
         header='Statistics'
       >
-        <div styleName='body'>
+        <div className={theme.body}>
           <h3>Current Session</h3>
-          <div styleName='row'>
-            <div styleName='key'>Uploaded:</div>
-            <div styleName='value'>{ size(cumulativeSession.uploadedBytes) }</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Uploaded:</div>
+            <div className={theme.value}>{ size(cumulativeSession.uploadedBytes) }</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Downloaded:</div>
-            <div styleName='value'>{ size(cumulativeSession.downloadedBytes) }</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Downloaded:</div>
+            <div className={theme.value}>{ size(cumulativeSession.downloadedBytes) }</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Ratio:</div>
-            <div styleName='value'>None</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Ratio:</div>
+            <div className={theme.value}>None</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Running Time:</div>
-            <div styleName='value'>{ timeInterval(cumulativeSession.secondsActive) } seconds</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Running Time:</div>
+            <div className={theme.value}>{ timeInterval(cumulativeSession.secondsActive) } seconds</div>
           </div>
 
           <h3>Total</h3>
-          <div styleName='row'>
-            <div styleName='key'>Started:</div>
-            <div styleName='value'>{ cumulativeTotal.sessionCount } times</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Started:</div>
+            <div className={theme.value}>{ cumulativeTotal.sessionCount } times</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Uploaded:</div>
-            <div styleName='value'>{ size(cumulativeTotal.uploadedBytes) }</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Uploaded:</div>
+            <div className={theme.value}>{ size(cumulativeTotal.uploadedBytes) }</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Downloaded:</div>
-            <div styleName='value'>{ size(cumulativeTotal.downloadedBytes) }</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Downloaded:</div>
+            <div className={theme.value}>{ size(cumulativeTotal.downloadedBytes) }</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Ratio:</div>
-            <div styleName='value'>None</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Ratio:</div>
+            <div className={theme.value}>None</div>
           </div>
-          <div styleName='row'>
-            <div styleName='key'>Running Time:</div>
-            <div styleName='value'>{ timeInterval(cumulativeTotal.secondsActive) } seconds</div>
+          <div className={theme.row}>
+            <div className={theme.key}>Running Time:</div>
+            <div className={theme.value}>{ timeInterval(cumulativeTotal.secondsActive) } seconds</div>
           </div>
         </div>
 
