@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import StatusButton from '../';
 
@@ -23,7 +23,7 @@ test('StatusButton pause', () => {
 test('StatusButton onToggle', () => {
   const toggleStatus = jest.fn();
 
-  const component = shallow(
+  const component = mount(
     <StatusButton torrent={{id: 999, isStopped: false}} onToggle={toggleStatus} />
   );
 

@@ -1,35 +1,45 @@
-exports[`test ProgressBar leeching 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar leeching 1`] = `
 <div
-  className="progressBar leeching">
+  className="undefined undefined"
+>
   <progress
     max="100"
-    value={50} />
+    value={50}
+  />
 </div>
 `;
 
-exports[`test ProgressBar magnet 1`] = `
+exports[`ProgressBar magnet 1`] = `
 <div
-  className="progressBar magnet">
+  className="undefined undefined"
+>
   <progress
     max="100"
-    value={50} />
+    value={50}
+  />
 </div>
 `;
 
-exports[`test ProgressBar paused 1`] = `
+exports[`ProgressBar paused 1`] = `
 <div
-  className="progressBar paused">
+  className="undefined undefined"
+>
   <progress
     max="100"
-    value={50} />
+    value={50}
+  />
 </div>
 `;
 
-exports[`test ProgressBar seeding 1`] = `
+exports[`ProgressBar seeding 1`] = `
 <div
-  className="progressBar seeding">
+  className="undefined undefined"
+>
   <progress
     max="100"
-    value={50} />
+    value={50}
+  />
 </div>
 `;
