@@ -14,6 +14,7 @@
     "babel-eslint": "^7.2.2",
     "babel-jest": "17.0.2",
     "babel-loader": "6.2.7",
+    "babel-plugin-react-intl": "^2.3.1",
     "babel-plugin-syntax-trailing-function-commas": "^6.20.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-export-extensions": "^6.8.0",
@@ -77,17 +78,20 @@
     "react-css-modules": "3.7.10",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.8.0",
+    "react-intl": "^2.2.3",
     "react-overlays": "0.6.10",
     "react-tabs": "^0.8.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "build:langs": "node scripts/translate.js",
     "test": "node --harmony_proxies scripts/test.js --env=jsdom",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src"
   },
   "jest": {
+    "coverageDirectory": "<rootDir>/coverage",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
@@ -109,7 +113,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "\\.css$": "identity-obj-proxy"
+      "\\.css$": "identity-obj-proxy",
+      "^test(.*)$": "<rootDir>/test$1"
     },
     "modulePaths": [
       "<rootDir>/src"
@@ -124,7 +129,13 @@
       "babel-plugin-transform-decorators-legacy",
       "babel-plugin-transform-object-rest-spread",
       "babel-plugin-syntax-trailing-function-commas",
-      "babel-plugin-transform-export-extensions"
+      "babel-plugin-transform-export-extensions",
+      [
+        "babel-plugin-react-intl",
+        {
+          "messagesDir": "./build/messages/"
+        }
+      ]
     ]
   },
   "eslintConfig": {

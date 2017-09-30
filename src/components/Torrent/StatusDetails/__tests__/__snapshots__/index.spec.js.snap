@@ -1,0 +1,25 @@
+exports[`test StatusDetails checking 1`] = `
+<span>
+  Verifying local data (100% tested)
+</span>
+`;
+
+exports[`test StatusDetails downloading 1`] = `
+<span>
+  Downloading from 5 of 5 peers and 5 web seeds - ↓ 10.00 MB/s ↑ 100 kB/s
+</span>
+`;
+
+exports[`test StatusDetails has errors 1`] = `null`;
+
+exports[`test StatusDetails seeding 1`] = `
+<span>
+  Seeding to 5 of 5 connected peers - ↑ 100 kB/s
+</span>
+`;
+
+exports[`test StatusDetails status 1`] = `
+<span>
+  Unknown
+</span>
+`;

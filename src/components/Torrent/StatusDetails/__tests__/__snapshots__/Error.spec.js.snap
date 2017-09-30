@@ -1,0 +1,19 @@
+exports[`test Error local error 1`] = `
+<span>
+  Error: Test error
+</span>
+`;
+
+exports[`test Error track error 1`] = `
+<span>
+  Tracker returned an error: Test error
+</span>
+`;
+
+exports[`test Error track warning 1`] = `
+<span>
+  Tracker returned a warning: Test error
+</span>
+`;
+
+exports[`test Error undefined error 1`] = `null`;

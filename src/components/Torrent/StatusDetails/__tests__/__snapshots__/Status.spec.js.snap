@@ -1,0 +1,59 @@
+exports[`test Status check 1`] = `
+<span>
+  Verifying local data
+</span>
+`;
+
+exports[`test Status check wait 1`] = `
+<span>
+  Queued for verification
+</span>
+`;
+
+exports[`test Status download 1`] = `
+<span>
+  Downloading
+</span>
+`;
+
+exports[`test Status download wait 1`] = `
+<span>
+  Queued for download
+</span>
+`;
+
+exports[`test Status other 1`] = `
+<span>
+  Error
+</span>
+`;
+
+exports[`test Status seed 1`] = `
+<span>
+  Seeding
+</span>
+`;
+
+exports[`test Status seed wait 1`] = `
+<span>
+  Queued for seeding
+</span>
+`;
+
+exports[`test Status stopped finished 1`] = `
+<span>
+  Finished
+</span>
+`;
+
+exports[`test Status stopped not finished 1`] = `
+<span>
+  Paused
+</span>
+`;
+
+exports[`test Status unknown 1`] = `
+<span>
+  Unknown
+</span>
+`;

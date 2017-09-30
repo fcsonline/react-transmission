@@ -1,0 +1,21 @@
+{
+  "activity.title": "Activity",
+  "torrent.full.checking": "Verifying local data ({recheckProgress} tested)",
+  "torrent.full.downloading.frompeersandwebseeds": "Downloading from {peersSendingToUs, number} of {peersConnected, number} {peersConnected, plural, one {peer} other {peers}} and {webseedsSendingToUs, number} {webseedsSendingToUs, plural, one {web seed} other {web seeds}} - {formattedRateDownload} {formattedRateUpload}",
+  "torrent.full.downloading.fromwebseeds": "Downloading from {webseedsSendingToUs, number} {webseedsSendingToUs, plural, one {web seed} other {web seeds}} - {formattedRateDownload} {formattedRateUpload}",
+  "torrent.full.downloading.frompeers": "Downloading from {peersSendingToUs, number} of {peersConnected, number} {peersConnected, plural, one {peer} other {peers}} - {formattedRateDownload} {formattedRateUpload}",
+  "torrent.error.trackerwarning": "Tracker returned a warning: {errorDescription}",
+  "torrent.error.trackererror": "Tracker returned an error: {errorDescription}",
+  "torrent.error.localerror": "Error: {errorDescription}",
+  "torrent.full.seeding": "Seeding to {peersGettingFromUs, number} of {peersConnected, number} connected {peersConnected, plural, one {peer} other {peers}} - {formattedRateUpload}",
+  "torrent.status.checkwait": "Queued for verification",
+  "torrent.status.check": "Verifying local data",
+  "torrent.status.downloadwait": "Queued for download",
+  "torrent.status.download": "Downloading",
+  "torrent.status.seedwait": "Queued for seeding",
+  "torrent.status.seed": "Seeding",
+  "torrent.status.finished": "Finished",
+  "torrent.status.paused": "Paused",
+  "torrent.status.unknown": "Unknown",
+  "torrent.status.error": "Error"
+}

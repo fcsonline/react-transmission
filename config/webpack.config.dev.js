@@ -83,6 +83,7 @@ module.exports = {
       components: path.join(paths.appSrc, 'components'),
       stores: path.join(paths.appSrc, 'stores'),
       util: path.join(paths.appSrc, 'util'),
+      translations: path.join(paths.appSrc, 'translations'),
       reactions: path.join(paths.appSrc, 'reactions')
     }
   },

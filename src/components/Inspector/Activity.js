@@ -1,11 +1,17 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import ActivityRow from './Row';
 
 function Activity({ info }) {
   return (
     <div>
-      <h3>Activity</h3>
+      <h3>
+        <FormattedMessage
+          id='activity.title'
+          defaultMessage='Activity'
+        />
+      </h3>
       <ActivityRow label='Have' value={info.have} />
       <ActivityRow label='Availability' value={info.available} />
       <ActivityRow label='Downloaded' value={info.download} />
