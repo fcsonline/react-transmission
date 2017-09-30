@@ -1,18 +1,20 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
-import styles from './styles/index.css';
-
 @inject('view_store')
+@themr('Dialog')
 @observer
-@CSSModules(styles)
 class Header extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
-      <header styleName='header'>
-        <h2 styleName='title'>{ this.props.title }</h2>
-        <button styleName='close' onClick={this.props.onClose} title='Close'> ⨯ </button>
+      <header className={theme.header}>
+        <h2 className={theme.title}>{ this.props.title }</h2>
+        <button className={theme.close} onClick={this.props.onClose} title='Close'>
+          <div className={theme.closeImage} />
+        </button>
       </header>
     );
   }

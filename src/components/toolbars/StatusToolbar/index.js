@@ -1,20 +1,14 @@
 import React, { Component} from 'react';
 import { findDOMNode } from 'react-dom';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
-import settingsImage from 'images/settings.png';
-import preferencesImage from 'images/wrench.png';
-import compactImage from 'images/compact.png';
-
 import SettingsContextMenu from 'components/menus/SettingsContextMenu';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'session_store')
+@themr('StatusToolbar')
 @observer
-@CSSModules(styles)
 class StatusToolbar extends Component {
   constructor(props) {
     super(props);
@@ -69,28 +63,31 @@ class StatusToolbar extends Component {
   }
 
   render() {
-    let compactClassName = styles.button;
-    let turtleClassName = styles.buttonTurtle;
+    const { theme } = this.props;
+    let compactClassName = theme.button;
+    let turtleClassName = theme.button;
 
     if (this.props.view_store.compact) {
-      compactClassName += ` ${styles.buttonActive}`;
+      compactClassName += ` ${theme.active}`;
     }
 
     if (this.props.session_store.settings['alt-speed-enabled']) {
-      turtleClassName += ` ${styles.turtleActive}`;
+      turtleClassName += ` ${theme.active}`;
     }
 
     return (
-      <div styleName='toolbar'>
-        <button styleName='button' onClick={this.onToggleSettings}>
-          <img src={settingsImage} alt='Settings' />
+      <div className={theme.toolbar}>
+        <button className={theme.button} onClick={this.onToggleSettings} title='Settings'>
+          <div className={theme.settingsImage} />
         </button>
-        <button styleName='button' onClick={this.onTogglePreferences}>
-          <img src={preferencesImage} alt='Preferences' />
+        <button className={theme.button} onClick={this.onTogglePreferences} title='Preferences'>
+          <div className={theme.preferencesImage} />
         </button>
-        <button className={turtleClassName} onClick={this.onToggleTurtle} title='Speed limit' />
-        <button className={compactClassName} onClick={this.onToggleCompact}>
-          <img src={compactImage} alt='Compact view' />
+        <button className={turtleClassName} onClick={this.onToggleTurtle} title='Speed limit'>
+          <div className={theme.turtleImage} />
+        </button>
+        <button className={compactClassName} onClick={this.onToggleCompact} title='Compact view'>
+          <div className={theme.compactImage} />
         </button>
         {this.renderContextMenu()}
       </div>

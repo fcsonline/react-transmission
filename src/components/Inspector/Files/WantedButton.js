@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
 import autobind from 'autobind-decorator';
-
-import styles from './styles/index.css';
 
 class WantedButton extends Component {
   constructor(props) {
@@ -38,4 +35,4 @@ class WantedButton extends Component {
   }
 }
 
-export default CSSModules(styles)(WantedButton);
+export default WantedButton;

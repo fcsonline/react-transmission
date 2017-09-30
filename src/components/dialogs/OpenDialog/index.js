@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 import { size } from 'util/formatters';
@@ -9,11 +9,9 @@ import logoImage from 'images/logo.png';
 
 import TorrentUpload from 'stores/torrent-upload';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'torrents_store', 'session_store')
+@themr('OpenDialog')
 @observer
-@CSSModules(styles)
 class OpenDialog extends Component {
   constructor(props) {
     super(props);
@@ -80,17 +78,19 @@ class OpenDialog extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <Dialog
         show={this.props.view_store.isOpenDialogShown}
         onHide={this.onHide}
         header='Upload Torrent Files'
       >
-        <div styleName='body'>
-          <div styleName='logo'>
+        <div className={theme.body}>
+          <div className={theme.logo}>
             <img src={logoImage} alt='logo' />
           </div>
-          <div styleName='form'>
+          <div className={theme.form}>
             <form onKeyDown={this.onKeyDown} onChange={this.onChange}>
               <section>
                 <fieldset>
@@ -109,13 +109,13 @@ class OpenDialog extends Component {
                 </fieldset>
 
                 <fieldset>
-                  <label styleName='inlineCheck'>
+                  <label className={theme.inlineCheck}>
                     <input name='paused' type='checkbox' defaultChecked onChange={this.onChangeStart} />
                     <div>Start when added</div>
                   </label>
                 </fieldset>
               </section>
-              <section styleName='buttons'>
+              <section className={theme.buttons}>
                 <button onClick={this.onCancel}>Cancel</button>
                 <button onClick={this.onUpload}>Upload</button>
               </section>

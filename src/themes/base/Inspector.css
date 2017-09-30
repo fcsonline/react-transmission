@@ -1,0 +1,95 @@
+.inspector {
+  text-align: left;
+  padding: 15px;
+}
+
+.inspector :global .react-tabs__tab-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.inspector :global .react-tabs__tab {
+  display: inline-block;
+  border-style: solid;
+  border-color: #aaa;
+  border-width: 1px;
+  padding: 3px;
+  cursor: pointer;
+  background-color: #dddddd;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#bbbbbb));
+  background-image: -webkit-linear-gradient(top, #ffffff, #bbbbbb);
+  background-image: -moz-linear-gradient(top, #ffffff, #bbbbbb);
+  background-image: -ms-linear-gradient(top, #ffffff, #bbbbbb);
+  background-image: -o-linear-gradient(top, #ffffff, #bbbbbb);
+  background-image: linear-gradient(top, #ffffff, #bbbbbb);
+}
+
+.inspector :global .react-tabs__tab--selected {
+  background-image: -webkit-linear-gradient(top, #cdcdff, white);
+}
+
+.inspector :global .react-tabs [role=tab]:first-child {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.inspector :global .react-tabs [role=tab]:last-child {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.inspector h1 {
+  font-weight: bold;
+  font-size: large;
+}
+
+.image {
+  width: 30px;
+  height: 20px;
+}
+
+.infoImage {
+  composes: image;
+
+  background-image: url(./images/inspector-info.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.peersImage {
+  composes: image;
+
+  background-image: url(./images/inspector-peers.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.trackersImage {
+  composes: image;
+
+  background-image: url(./images/inspector-trackers.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.filesImage {
+  composes: image;
+
+  background-image: url(./images/inspector-files.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Row */
+.row {
+ display: flex;
+ padding-bottom: 10px;
+}
+
+.key {
+ width: 120px;
+}
+
+.value {
+ flex: 1;
+}

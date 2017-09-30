@@ -1,14 +1,9 @@
 import React, { Component} from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
 import TorrentStats from 'stores/torrent-stats';
-
-import infoImage from 'images/inspector-info.png';
-import peersImage from 'images/inspector-peers.png';
-import trackersImage from 'images/inspector-trackers.png';
-import filesImage from 'images/inspector-files.png';
 
 import Activity from './Activity';
 import Details from './Details';
@@ -16,26 +11,25 @@ import Peers from './Peers';
 import Trackers from './Trackers';
 import Files from './Files';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'torrents_store')
+@themr('Inspector')
 @observer
-@CSSModules(styles)
 class Inspector extends Component {
   render() {
+    const { theme } = this.props;
     const selectedTorrentIds = this.props.view_store.selectedTorrents;
     const torrents = this.props.torrents_store.getByIds(selectedTorrentIds);
 
     const info = new TorrentStats(torrents);
 
     return (
-      <div styleName='inspector'>
+      <div className={theme.inspector}>
         <Tabs>
           <TabList>
-            <Tab><img src={infoImage} alt='Info' /></Tab>
-            <Tab><img src={peersImage} alt='Peers' /></Tab>
-            <Tab><img src={trackersImage} alt='Trackers' /></Tab>
-            <Tab><img src={filesImage} alt='Files' /></Tab>
+            <Tab title='Info'><div className={theme.infoImage} /></Tab>
+            <Tab title='Peers'><div className={theme.peersImage} /></Tab>
+            <Tab title='Trackers'><div className={theme.trackersImage} /></Tab>
+            <Tab title='Files'><div className={theme.filesImage} /></Tab>
           </TabList>
           <TabPanel>
             <h1>{info.title}</h1>

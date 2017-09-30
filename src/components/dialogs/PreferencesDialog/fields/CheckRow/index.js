@@ -1,18 +1,17 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 
-import styles from './styles/index.css';
-
 @inject('session_store')
+@themr('PreferencesDialog')
 @observer
-@CSSModules(styles)
 class CheckRow extends Component {
   render() {
+    const { theme } = this.props;
     const check = this.props.session_store.settings[this.props.id];
 
     return (
-      <div styleName='row'>
+      <div className={theme.row}>
         <input type='checkbox' id={this.props.id} title={this.props.title} defaultChecked={check} />
         <label htmlFor={this.props.id} title={this.props.title}>{this.props.label}</label>
       </div>

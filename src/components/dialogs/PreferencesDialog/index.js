@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
@@ -12,11 +12,9 @@ import SpeedTabPanel from './SpeedTabPanel';
 import PeersTabPanel from './PeersTabPanel';
 import NetworkTabPanel from './NetworkTabPanel';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'session_store')
+@themr('PreferencesDialog')
 @observer
-@CSSModules(styles)
 class PreferencesDialog extends Component {
   @autobind onBlur(event) {
     const type = event.target.attributes.type.value;
@@ -43,14 +41,16 @@ class PreferencesDialog extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <Dialog
         show={this.props.view_store.isPreferencesDialogShown}
         onHide={this.onHide}
         header='Preferences'
       >
-        <div styleName='body'>
-          <div styleName='content'>
+        <div className={theme.body}>
+          <div className={theme.content}>
             <Tabs onBlur={this.onBlur} onChange={this.onChange}>
               <TabList>
                 <Tab>Torrents</Tab>

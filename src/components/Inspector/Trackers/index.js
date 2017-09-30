@@ -1,9 +1,6 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
 
 import TrackerGroup from './TrackerGroup';
-
-import styles from './styles/index.css';
 
 function Trackers({ info }) {
   return (
@@ -18,4 +15,4 @@ function Trackers({ info }) {
   );
 }
 
-export default CSSModules(styles)(Trackers);
+export default Trackers;

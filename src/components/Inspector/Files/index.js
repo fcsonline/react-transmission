@@ -1,11 +1,8 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
 import { inject } from 'mobx-react';
 
 import { generateTree } from './services/generate-tree';
 import FileRow from './FileRow';
-
-import styles from './styles/index.css';
 
 function Files({ info, torrents_store }) {
   // TODO: Generate tree for each torrent files
@@ -29,4 +26,4 @@ function Files({ info, torrents_store }) {
   );
 }
 
-export default inject('torrents_store')(CSSModules(styles)(Files));
+export default inject('torrents_store')(Files);

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
 import ContextMenu from 'components/menus/ContextMenu';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'torrents_store')
-@CSSModules(styles)
+@themr('SortByContextMenu')
 class SortByContextMenu extends Component {
   @autobind onToggleSortByContextMenu() {
     this.props.view_store.toggleSortByContextMenu();
@@ -24,6 +22,7 @@ class SortByContextMenu extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const { sortCriteria, sortDirection } = this.props.torrents_store;
     const criteriaList = {
       queue_order: 'Queue Order',
@@ -44,17 +43,17 @@ class SortByContextMenu extends Component {
         onHide={this.props.onHide}
       >
         <ul
-          styleName='torrentMenu'
+          className={theme.torrentMenu}
           onClick={this.onToggleContextMenu}
           onMouseEnter={this.onToggleSortByContextMenu}
           onMouseLeave={this.onToggleSortByContextMenu}
         >
           {Object.keys(criteriaList).map((key) => (
-            <li key={key} styleName={sortCriteria === key ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={() => this.onSetSortCriteria(key)}>{criteriaList[key]}</li>
+            <li key={key} className={sortCriteria === key ? theme.torrentMenuSelected : theme.torrentMenuItem} onClick={() => this.onSetSortCriteria(key)}>{criteriaList[key]}</li>
           ))}
 
-          <li styleName='torrentMenuSeparator' />
-          <li styleName={sortDirection === 'ascending' ? 'torrentMenuSelected' : 'torrentMenuItem'}>Reverse Sort Order</li>
+          <li className={theme.torrentMenuSeparator} />
+          <li className={sortDirection === 'ascending' ? theme.torrentMenuSelected : theme.torrentMenuItem}>Reverse Sort Order</li>
         </ul>
       </ContextMenu>
     );

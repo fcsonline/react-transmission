@@ -1,11 +1,15 @@
-exports[`test StatusButton pause 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusButton pause 1`] = `
 <button
-  className="statusPause"
-  onClick={[Function]} />
+  className={undefined}
+  onClick={[Function]}
+/>
 `;
 
-exports[`test StatusButton resume 1`] = `
+exports[`StatusButton resume 1`] = `
 <button
-  className="statusResume"
-  onClick={[Function]} />
+  className={undefined}
+  onClick={[Function]}
+/>
 `;

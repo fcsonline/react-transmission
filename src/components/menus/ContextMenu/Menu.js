@@ -1,16 +1,18 @@
-import React from 'react';
-import CSSModules from 'react-css-modules';
+import React, { Component } from 'react';
+import { themr } from 'react-css-themr';
 
-import styles from './styles/index.css';
-
-function Menu({ style, children }) {
-  return (
-    <div styleName='contextMenuOuter' style={style}>
-      <div styleName='contextMenuInner'>
-        {children}
+@themr('ContextMenu')
+class Menu extends Component {
+  render() {
+    const { theme, children, style } = this.props;
+    return (
+      <div className={theme.contextMenuOuter} style={style}>
+        <div className={theme.contextMenuInner}>
+          {children}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default CSSModules(Menu, styles);
+export default Menu;

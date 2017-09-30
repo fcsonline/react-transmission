@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import autobind from 'autobind-decorator';
 import { observer } from 'mobx-react';
 
-import styles from './styles/index.css';
-
+@themr('StatusButton')
 @observer
-@CSSModules(styles)
 class StatusButton extends Component {
   static defaultProps = {
     onToggle: () => {},
@@ -17,9 +15,11 @@ class StatusButton extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <button
-        styleName={this.props.torrent.isStopped ? 'statusResume' : 'statusPause'}
+        className={this.props.torrent.isStopped ? theme.statusResume : theme.statusPause}
         onClick={this.onClick}
       />
     );

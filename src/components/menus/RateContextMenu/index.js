@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import CSSModules from 'react-css-modules';
+import { themr } from 'react-css-themr';
 import { inject } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
 import ContextMenu from 'components/menus/ContextMenu';
 
-import styles from './styles/index.css';
-
 @inject('view_store', 'session_store')
-@CSSModules(styles)
+@themr('RateContextMenu')
 class RateContextMenu extends Component {
   @autobind onToggleRateContextMenu() {
     // FIXME
@@ -28,6 +26,8 @@ class RateContextMenu extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     const directionKey = `speed-limit-${this.props.direction}`;
     const rateLimit = this.props.session_store.settings[directionKey];
     const enabled = this.props.session_store.settings[`${directionKey}-enabled`];
@@ -56,16 +56,16 @@ class RateContextMenu extends Component {
         onHide={this.props.onHide}
       >
         <ul
-          styleName='torrentMenu'
+          className={theme.torrentMenu}
           onClick={this.onToggleContextMenu}
           onMouseEnter={this.onToggleRateContextMenu}
           onMouseLeave={this.onToggleRateContextMenu}
         >
-          <li styleName={!enabled ? 'torrentMenuSelected' : 'torrentMenuItem'} onClick={() => this.onSetRateLimit(0)}>Unlimited</li>
-          <li styleName={enabled ? 'torrentMenuSelected' : 'torrentMenuItem'}>Limit ({rateList[`${rateLimit}`]})</li>
-          <li styleName='torrentMenuSeparator' />
+          <li className={!enabled ? theme.torrentMenuSelected : theme.torrentMenuItem} onClick={() => this.onSetRateLimit(0)}>Unlimited</li>
+          <li className={enabled ? theme.torrentMenuSelected : theme.torrentMenuItem}>Limit ({rateList[`${rateLimit}`]})</li>
+          <li className={theme.torrentMenuSeparator} />
           {Object.keys(rateList).map((key) => (
-            <li key={key} styleName='torrentMenuItem' onClick={() => this.onSetRateLimit(+key)}>{rateList[key]}</li>
+            <li key={key} className={theme.torrentMenuItem} onClick={() => this.onSetRateLimit(+key)}>{rateList[key]}</li>
           ))}
 
         </ul>
