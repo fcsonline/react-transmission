@@ -60,27 +60,27 @@ class ActionToolbar extends Component {
     return (
       <div styleName='toolbar'>
         <button styleName='button' onClick={this.onOpen}>
-          <img src={toolbarFolderImage} title='Open Torrent' alt='Open Torrent'/>
+          <img src={toolbarFolderImage} title='Open Torrent' alt='Open Torrent' />
         </button>
         <button styleName='button' onClick={this.onRemove} disabled={!isAnySelected}>
-          <img src={toolbarCloseImage} title='Remove Selected Torrents' alt='Remove Selected Torrents'/>
+          <img src={toolbarCloseImage} title='Remove Selected Torrents' alt='Remove Selected Torrents' />
         </button>
-        <span styleName='separator'></span>
+        <span styleName='separator' />
         <button styleName='button' onClick={this.onStart} disabled={!isAnyPaused}>
-          <img src={toolbarStartImage} title='Start Selected Torrents' alt='Start Selected Torrents'/>
+          <img src={toolbarStartImage} title='Start Selected Torrents' alt='Start Selected Torrents' />
         </button>
         <button styleName='button' onClick={this.onPause} disabled={!isAnyStarted}>
-          <img src={toolbarPauseImage} title='Pause Selected Torrents' alt='Pause Selected Torrents'/>
+          <img src={toolbarPauseImage} title='Pause Selected Torrents' alt='Pause Selected Torrents' />
         </button>
-        <span styleName='separator'></span>
+        <span styleName='separator' />
         <button styleName='button' onClick={this.onStartAll}>
-          <img src={toolbarStartAllImage} title='Start All Torrents' alt='Start All Torrents'/>
+          <img src={toolbarStartAllImage} title='Start All Torrents' alt='Start All Torrents' />
         </button>
         <button styleName='button' onClick={this.onPauseAll}>
-          <img src={toolbarPauseAllImage} title='Pause All Torrents' alt='Pause All Torrents'/>
+          <img src={toolbarPauseAllImage} title='Pause All Torrents' alt='Pause All Torrents' />
         </button>
         <button className={`${styles.button} ${styles.inspector}`} onClick={this.onToggleInspector}>
-          <img src={toolbarInfoImage} title='Toggle inspector' alt='Toggle inspector'/>
+          <img src={toolbarInfoImage} title='Toggle inspector' alt='Toggle inspector' />
         </button>
       </div>
     );

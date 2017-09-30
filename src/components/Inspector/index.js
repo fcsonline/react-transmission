@@ -22,7 +22,6 @@ import styles from './styles/index.css';
 @observer
 @CSSModules(styles)
 class Inspector extends Component {
-
   render() {
     const selectedTorrentIds = this.props.view_store.selectedTorrents;
     const torrents = this.props.torrents_store.getByIds(selectedTorrentIds);

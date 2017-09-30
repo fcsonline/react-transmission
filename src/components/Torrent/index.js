@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom'
+import { findDOMNode } from 'react-dom';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
@@ -66,7 +66,7 @@ class Torrent extends Component {
 
     return (
       <div onContextMenu={this.onContextMenu}>
-        <View torrent={torrent}/>
+        <View torrent={torrent} />
         {this.renderContextMenu()}
       </div>
     );

@@ -22,7 +22,7 @@ const extractDomains = (torrent) => {
 class TorrentStore {
   @observable previousTorrents = [];
   @observable torrents = [];
-  @observable statusFilter = 0;
+  @observable statusFilter = -1;
   @observable trackerFilter = '';
   @observable textFilter = '';
   @observable sortCriteria = 'name';
@@ -41,13 +41,12 @@ class TorrentStore {
         'seedRatioMode', 'seedRatioLimit', 'sizeWhenDone', 'status', 'trackers',
         'downloadDir', 'uploadedEver', 'uploadRatio', 'webseedsSendingToUs',
 
-
         'activityDate', 'corruptEver', 'desiredAvailable', 'downloadedEver',
         'fileStats', 'haveUnchecked', 'haveValid', 'peers', 'startDate',
         'trackerStats', 'comment', 'creator', 'dateCreated', 'files',
-        'hashString', 'isPrivate', 'pieceCount', 'pieceSize'
+        'hashString', 'isPrivate', 'pieceCount', 'pieceSize',
 
-      ]
+      ],
     };
 
     if (torrentIds) {
@@ -74,6 +73,24 @@ class TorrentStore {
             newTorrents.map((torrent) => new Torrent(torrent))
           );
         }
+      }));
+    }));
+  }
+
+  @action fetchIds(torrentIds) {
+    const data = {
+      fields: ['id'],
+    };
+
+    if (torrentIds) {
+      data['ids'] = torrentIds;
+    }
+
+    return this.rpc.sendRequest('torrent-get', data).then(action((response) => {
+      response.json().then(action((result) => {
+        this.torrents.replace(
+          result.arguments.torrents.map((torrent) => new Torrent(torrent))
+        );
       }));
     }));
   }
@@ -202,12 +219,30 @@ class TorrentStore {
   @action setPriority(torrentId, priority, fileIds) {
     const data = {
       ids: [torrentId],
+      // low | normal | high
       [`priority-${priority}`]: fileIds,
     };
 
     return this.rpc
             .sendRequest('torrent-set', data)
             .then(this.refetchIfNeeded([torrentId]));
+  }
+
+  @action setWanted(torrentId, wanted, fileIds) {
+    const data = {
+      ids: [torrentId],
+      // wanted | unwanted
+      [`files-${wanted}`]: fileIds,
+    };
+
+    return this.rpc.sendRequest('torrent-set', data).then(action((response) => {
+      response.json().then(action((result) => {
+        // TODO: Review!
+        if (result.result.success !== 'success') return;
+
+        this.fetch(torrentId);
+      }));
+    }));
   }
 
   @action setSortCriteria(sortCriteria) {
@@ -237,7 +272,7 @@ class TorrentStore {
     const regexp = new RegExp(this.textFilter, 'i'); // TODO: Escape!
 
     return this.torrents.filter((torrent) => {
-      if (this.statusFilter && this.statusFilter !== torrent.status) return false;
+      if (this.statusFilter !== -1 && this.statusFilter !== torrent.status) return false;
       if (this.trackerFilter && !extractDomains(torrent).includes(this.trackerFilter)) return false;
       if (this.textFilter && !regexp.test(torrent.name)) return false;
 

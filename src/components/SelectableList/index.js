@@ -8,19 +8,18 @@ import styles from './styles/index.css';
 
 @CSSModules(styles)
 class SelectableList extends Component {
-
   @autobind onKeyDown(event) {
     const { children, lastSelectedItemId } = this.props;
-    const code = event.nativeEvent.code;
+    const key = event.key;
     const childIds = children.map((child) => child.props.id);
     const position = childIds.indexOf(lastSelectedItemId);
     let newSelectedId;
 
-    if (code === 'ArrowUp') {
+    if (key === 'ArrowUp') {
       newSelectedId = childIds[position - 1];
     }
 
-    if (code === 'ArrowDown') {
+    if (key === 'ArrowDown') {
       newSelectedId = childIds[position + 1];
     }
 
@@ -30,11 +29,15 @@ class SelectableList extends Component {
   }
 
   @autobind onContextMenu(event, id) {
-    this.props.onSelectItem(id);
+    const {selectedItemIds} = this.props;
+
+    if (!selectedItemIds.includes(id)) {
+      this.props.onSelectItem(id);
+    }
   }
 
   @autobind onClick(event, id) {
-    if (event.ctrlKey) {
+    if (event.ctrlKey || event.metaKey) {
       this.props.onToggleSelectItem(id);
       return;
     }

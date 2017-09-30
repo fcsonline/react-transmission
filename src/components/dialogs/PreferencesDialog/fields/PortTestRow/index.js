@@ -21,7 +21,7 @@ class PortTestRow extends Component {
 
     this.props.session_store.testPort(port).then((open) => {
       this.setState({
-        open: open
+        open: open,
       });
     });
   }
@@ -29,15 +29,15 @@ class PortTestRow extends Component {
   renderPortStatus() {
     if (this.state.open === null) {
       return (
-        <span id="port-label">Status: Unknown</span>
+        <span id='port-label'>Status: Unknown</span>
       );
     } else if (this.state.open) {
       return (
-        <span id="port-label">Port is <strong>Open</strong></span>
+        <span id='port-label'>Port is <strong>Open</strong></span>
       );
     } else {
       return (
-        <span id="port-label">Port is <strong>Closed</strong></span>
+        <span id='port-label'>Port is <strong>Closed</strong></span>
       );
     }
   }

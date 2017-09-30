@@ -3,7 +3,7 @@ import CSSModules from 'react-css-modules';
 import { inject, observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
-import Dialog from '../Dialog'
+import Dialog from '../Dialog';
 import logoImage from 'images/logo.png';
 
 import styles from './styles/index.css';
@@ -12,7 +12,6 @@ import styles from './styles/index.css';
 @observer
 @CSSModules(styles)
 class ConnectionDialog extends Component {
-
   @autobind onDismiss(event) {
     event.preventDefault();
     this.props.view_store.toggleConnectionDialog();
@@ -31,7 +30,7 @@ class ConnectionDialog extends Component {
       >
         <div styleName='body'>
           <div styleName='logo'>
-            <img src={logoImage} alt='logo'></img>
+            <img src={logoImage} alt='logo' />
           </div>
           <div styleName='content'>
             <p>

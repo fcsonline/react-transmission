@@ -33,7 +33,7 @@ class DropzoneLayer extends Component {
       <Dropzone
         activeClassName={styles.activeContainer}
         className={styles.container}
-        disableClick={true}
+        disableClick
         accept='application/x-bittorrent'
         onDrop={this.onDrop}
       >

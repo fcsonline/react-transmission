@@ -16,13 +16,13 @@ class TorrentsTabPanel extends Component {
     return (
       <div>
         <h3>Downloading</h3>
-        <TextRow id='download-dir' label='Download to'/>
-        <CheckRow id='start-added-torrents' label='Start when added'/>
-        <CheckRow id='rename-partial-files' label='Append ".part" to incomplete files'/>
+        <TextRow id='download-dir' label='Download to' />
+        <CheckRow id='start-added-torrents' label='Start when added' />
+        <CheckRow id='rename-partial-files' label='Append ".part" to incomplete files' />
 
         <h3>Seeding</h3>
-        <CheckValueRow idCheck='seedRatioLimited' idValue='seedRatioLimit' label='Stop seeding at ratio'/>
-        <CheckValueRow idCheck='idle-seeding-limit-enabled' idValue='idle-seeding-limit' label='Stop seeding if idle for (min)'/>
+        <CheckValueRow idCheck='seedRatioLimited' idValue='seedRatioLimit' label='Stop seeding at ratio' />
+        <CheckValueRow idCheck='idle-seeding-limit-enabled' idValue='idle-seeding-limit' label='Stop seeding if idle for (min)' />
       </div>
     );
   }

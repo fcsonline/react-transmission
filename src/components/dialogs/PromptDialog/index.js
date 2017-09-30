@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import CSSModules from 'react-css-modules';
 import autobind from 'autobind-decorator';
 
-import Dialog from '../Dialog'
+import Dialog from '../Dialog';
 import logoImage from 'images/logo.png';
 
 import styles from './styles/index.css';
@@ -23,7 +23,7 @@ class PromptDialog extends Component {
 
   @autobind onChange(event) {
     this.setState({
-      value: event.target.value
+      value: event.target.value,
     });
   }
 
@@ -50,7 +50,7 @@ class PromptDialog extends Component {
       >
         <div styleName='body'>
           <div styleName='logo'>
-            <img src={logoImage} alt='logo'></img>
+            <img src={logoImage} alt='logo' />
           </div>
           <div styleName='content'>
             { this.props.question &&

@@ -44,15 +44,15 @@ class TorrentUpload {
             };
           });
 
-          const urlTorrents = [{
+          const urlTorrent = {
             filename: this.url,
             paused: this.paused,
             'download-dir': this.downloadDir,
-          }];
+          };
 
-          resolve([...fileTorrents, urlTorrents]);
+          resolve([...fileTorrents, urlTorrent]);
         })
-        .catch(() => reject());
+        .catch(() => reject(new Error("Can't parse files")));
     });
   }
 }

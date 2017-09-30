@@ -12,17 +12,18 @@ class RPC {
 
   sendRequest(method, data) {
     const headers = {
-      [RPC.SESSION_ID_HEADER]: this._sessionId
+      [RPC.SESSION_ID_HEADER]: this._sessionId,
     };
     const body = JSON.stringify({
       'arguments': data,
-      method
+      method,
     });
 
     return fetch(this._url, {
       method: 'POST',
       headers,
-      body
+      credentials: 'include',
+      body,
     }).then((response) => {
       if (response.status === 502) {
         this._onDisconnect(response);
@@ -34,7 +35,7 @@ class RPC {
         return fetch(this._url, {
           method: 'POST',
           headers: {...headers, [RPC.SESSION_ID_HEADER]: this._sessionId},
-          body
+          body,
         });
       }
 

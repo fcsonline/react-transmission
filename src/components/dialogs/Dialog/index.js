@@ -3,7 +3,7 @@ import { Modal } from 'react-overlays';
 import CSSModules from 'react-css-modules';
 import { inject, observer } from 'mobx-react';
 
-import Header from './Header'
+import Header from './Header';
 
 import styles from './styles/index.css';
 
@@ -15,10 +15,13 @@ class Dialog extends Component {
     // TODO; try to investigate how to move this to css module
     const backdropStyle = {
       position: 'fixed',
-      top: 0, bottom: 0, left: 0, right: 0,
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
       zIndex: 'auto',
       backgroundColor: '#000',
-      opacity: 0.2
+      opacity: 0.2,
     };
 
     return (
