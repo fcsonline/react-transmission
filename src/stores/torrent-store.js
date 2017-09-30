@@ -61,8 +61,8 @@ class TorrentStore {
         if (torrentIds) {
           // There are ids passed to fetch, edit cache of dirty torrents
           // XXX: This is a potentially slow operation. Perhaps cache should be a map?
-          newTorrents.forEach(torrent => {
-            const i = this.torrents.findIndex(t => t.id === torrent.id);
+          newTorrents.forEach((torrent) => {
+            const i = this.torrents.findIndex((t) => t.id === torrent.id);
             if (i >= 0) {
               this.torrents[i].update(torrent);
             }
@@ -319,13 +319,13 @@ class TorrentStore {
     this.textFilter = textFilter;
   }
 
-  refetchIfNeeded = torrentIds => response => {
+  refetchIfNeeded = (torrentIds) => (response) => {
     response.json().then((response) => {
       // TODO: Review!
       if (response.result !== 'success') return;
 
       this.fetch();
-    })
+    });
   }
 
   getByIds(ids) {

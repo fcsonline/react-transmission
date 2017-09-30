@@ -21,7 +21,7 @@ class Torrent {
   }
 
   update(torrent) {
-    extendObservable(this, torrent)
+    extendObservable(this, torrent);
   }
 
   // TODO: Find a better name for this (displayName, compareName, etc.)
