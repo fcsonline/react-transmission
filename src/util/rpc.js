@@ -1,10 +1,11 @@
 import 'whatwg-fetch';
+import { filter, first } from 'lodash';
 
 class RPC {
   static SESSION_ID_HEADER = 'X-Transmission-Session-Id';
 
   constructor(onConnect = () => {}, onDisconnect = () => {}) {
-    this._url = '/transmission/rpc';
+    this._url = `/${first(filter(document.location.pathname.split('/')))}/rpc`;
     this._onConnect = onConnect;
     this._onDisconnect = onDisconnect;
     this._sessionId = null;
