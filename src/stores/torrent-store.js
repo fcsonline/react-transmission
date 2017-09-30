@@ -56,9 +56,23 @@ class TorrentStore {
     return this.rpc.sendRequest('torrent-get', data).then(action((response) => {
       response.json().then(action((result) => {
         this.previousTorrents = this.torrents.slice();
-        this.torrents.replace(
-          result.arguments.torrents.map((torrent) => new Torrent(torrent))
-        );
+        const newTorrents = result.arguments.torrents;
+
+        if (torrentIds) {
+          // There are ids passed to fetch, edit cache of dirty torrents
+          // XXX: This is a potentially slow operation. Perhaps cache should be a map?
+          newTorrents.forEach(torrent => {
+            const i = this.torrents.findIndex(t => t.id === torrent.id);
+            if (i >= 0) {
+              this.torrents[i].update(torrent);
+            }
+          });
+        } else {
+          // No ids passed, just replace the whole cache
+          this.torrents.replace(
+            newTorrents.map((torrent) => new Torrent(torrent))
+          );
+        }
       }));
     }));
   }
@@ -82,14 +96,9 @@ class TorrentStore {
   }
 
   @action add(torrentUploads) {
-    return this.rpc.sendRequest('torrent-add', torrentUploads).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetchIds();
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-add', torrentUploads)
+            .then(this.refetchIfNeeded());
   }
 
   @action start(torrentIds) {
@@ -97,14 +106,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-start', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-start', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action startNow(torrentIds) {
@@ -112,14 +116,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-start-now', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-start-now', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action stop(torrentIds) {
@@ -127,14 +126,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-stop', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-stop', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action remove(torrentIds, options = {}) {
@@ -143,14 +137,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-remove', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetchIds();
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-remove', data)
+            .then(this.refetchIfNeeded());
   }
 
   @action queueMoveTop(torrentIds) {
@@ -158,14 +147,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('queue-move-top', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('queue-move-top', data)
+            .then(this.refetchIfNeeded());
   }
 
   @action queueMoveUp(torrentIds) {
@@ -173,14 +157,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('queue-move-up', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('queue-move-up', data)
+            .then(this.refetchIfNeeded());
   }
 
   @action queueMoveDown(torrentIds) {
@@ -188,14 +167,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('queue-move-down', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('queue-move-down', data)
+            .then(this.refetchIfNeeded());
   }
 
   @action queueMoveBottom(torrentIds) {
@@ -203,14 +177,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('queue-move-bottom', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('queue-move-bottom', data)
+            .then(this.refetchIfNeeded());
   }
 
   @action verify(torrentIds) {
@@ -218,14 +187,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-verify', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-verify', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action rename(torrentIds, path, name) {
@@ -235,14 +199,9 @@ class TorrentStore {
       name,
     };
 
-    return this.rpc.sendRequest('torrent-rename-path', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-rename-path', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action setLocation(torrentIds, location) {
@@ -252,14 +211,9 @@ class TorrentStore {
       move: true,
     };
 
-    return this.rpc.sendRequest('torrent-set-location', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-set-location', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @action setPriority(torrentId, priority, fileIds) {
@@ -269,14 +223,9 @@ class TorrentStore {
       [`priority-${priority}`]: fileIds,
     };
 
-    return this.rpc.sendRequest('torrent-set', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentId);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-set', data)
+            .then(this.refetchIfNeeded([torrentId]));
   }
 
   @action setWanted(torrentId, wanted, fileIds) {
@@ -305,14 +254,9 @@ class TorrentStore {
       ids: torrentIds,
     };
 
-    return this.rpc.sendRequest('torrent-reannounce', data).then(action((response) => {
-      response.json().then(action((result) => {
-        // TODO: Review!
-        if (result.result.success !== 'success') return;
-
-        this.fetch(torrentIds);
-      }));
-    }));
+    return this.rpc
+            .sendRequest('torrent-reannounce', data)
+            .then(this.refetchIfNeeded(torrentIds));
   }
 
   @computed get trackers() {
@@ -373,6 +317,15 @@ class TorrentStore {
 
   @action setTextFilter(textFilter) {
     this.textFilter = textFilter;
+  }
+
+  refetchIfNeeded = torrentIds => response => {
+    response.json().then((response) => {
+      // TODO: Review!
+      if (response.result !== 'success') return;
+
+      this.fetch();
+    })
   }
 
   getByIds(ids) {
